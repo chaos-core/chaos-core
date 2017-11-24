@@ -1,6 +1,6 @@
 {
   "name": "nix-core",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "homepage": "",
   "author": {
@@ -21,11 +21,14 @@
   ],
   "repository": "https://github.com/SpyMaster356/nix-core",
   "license": "MIT",
-  "dependencies": {
-    "discord.js": "github:hydrabolt/discord.js#master",
+  "dependencies": {},
+  "peerDependencies": {
+    "discord.js": "^12.0.0",
     "rx": "^4.1.0"
   },
   "devDependencies": {
+    "discord.js": "github:hydrabolt/discord.js#master",
+    "rx": "^4.1.0",
     "chai": "*",
     "eslint": "^4.11.0",
     "mocha": "^4.0.1",
