@@ -513,8 +513,7 @@ describe('CommandManager', function () {
 
         cmdManager.runCommandForMsg(message, nix)
           .subscribe(
-            () => {
-            },
+            () => {},
             (err) => done(err),
             () => {
               expect(cmdManager._filterMissingArgs).to.have.been.called;
@@ -523,6 +522,125 @@ describe('CommandManager', function () {
           );
       });
 
+      context("when there are no missing arguments", function () {
+        beforeEach(function () {
+          command.args = [
+            {name: 'param1', required: true},
+            {name: 'param2'},
+          ];
+
+          message.content = `!${command.name} value1 value2`;
+        });
+
+        it('runs the command', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {
+              },
+              (err) => done(err),
+              () => {
+                expect(command.run).to.have.been.called;
+                done();
+              }
+            );
+        });
+
+        it('does not send a message to the channel', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {
+              },
+              (err) => done(err),
+              () => {
+                expect(message.channel.send).not.to.have.been.called;
+                done();
+              }
+            );
+        });
+      });
+
+      context("when there are missing optional arguments", function () {
+        beforeEach(function () {
+          command.args = [
+            {name: 'param1', required: true},
+            {name: 'param2'},
+          ];
+
+          message.content = `!${command.name} value1`;
+        });
+
+        it('runs the command', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {},
+              (err) => done(err),
+              () => {
+                expect(command.run).to.have.been.called;
+                done();
+              }
+            );
+        });
+
+        it('does not send a message to the channel', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {},
+              (err) => done(err),
+              () => {
+                expect(message.channel.send).not.to.have.been.called;
+                done();
+              }
+            );
+        });
+      });
+
+      context("when there are missing required arguments", function () {
+        beforeEach(function () {
+          command.args = [
+            {name: 'param1', required: true},
+            {name: 'param2', required: true},
+          ];
+
+          message.content = `!${command.name} value1`;
+        });
+
+        it('does not run the command', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {},
+              (err) => done(err),
+              () => {
+                expect(command.run).not.to.have.been.called;
+                done();
+              }
+            );
+        });
+
+        it('sends a message to the channel', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {},
+              (err) => done(err),
+              () => {
+                expect(message.channel.send).to.have.been.called;
+                done();
+              }
+            );
+        });
+
+        it('sends the help message to the channel', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {
+              },
+              (err) => done(err),
+              () => {
+                expect(message.channel.send).to.have.been.calledWith('I\'m sorry, but I\'m missing some information for that command:');
+                done();
+              }
+            );
+        });
+      });
     });
   });
 });
