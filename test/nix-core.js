@@ -44,6 +44,21 @@ describe('NixCore', function () {
       );
     });
 
+    it('does not immediately complete', function (done) {
+      let completeSpy = sinon.spy();
+
+      nix.listen(
+        () => {
+          setTimeout(() => {
+            expect(completeSpy).not.to.have.been.called;
+            done();
+          }, 500);
+        },
+        (err) => done(err),
+        () => completeSpy()
+      );
+    });
+
     context('when passed a ready callback', function() {
       it('calls it when ready', function (done) {
         nix.listen(
