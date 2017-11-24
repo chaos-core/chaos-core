@@ -37,10 +37,29 @@ describe('NixCore', function () {
     it('messages the owner', function (done) {
       nix.listen(
         () => {
-          expect(ownerUser.send).to.have.been.calledWith("I'm now online.");
           done();
         },
         (err) => done(err)
+      );
+    });
+
+    it('does not message the owner for every event', function (done) {
+      let message = Factory.create("Message");
+
+      nix.listen(
+        () => {
+          nix.streams.message$.subscribe(
+            () => { setTimeout(() => nix.shutdown(), 500); }, // Delay shutdown, to make sure owner is not messaged
+            (err) => done(err)
+          );
+
+          nix.discord.emit('message', message);
+        },
+        (err) => done(err),
+        () => {
+          expect(ownerUser.send).to.have.been.calledOnce;
+          done();
+        }
       );
     });
 
