@@ -92,18 +92,19 @@ class NixCore {
    * @return {Rx.Observable} an observable stream to subscribe to
    */
   listen(ready, error, complete) {
-    if (!this.streams.main$) {
-      this.streams.main$ = Rx.Observable
-        .return()
-        .flatMap(() => this.discord.login(this._loginToken))
-        .flatMap(() => this.findOwner())
-        .map(() => this._startEventStreams())
-        .map(() => this.messageOwner("I'm now online."))
-        .share();
+    if (!this.main$) {
+      this.main$ =
+        Rx.Observable
+          .return()
+          .flatMap(() => this.discord.login(this._loginToken))
+          .flatMap(() => this.findOwner())
+          .merge(this._startEventStreams())
+          .map(() => this.messageOwner("I'm now online."))
+          .share();
     }
 
-    this.streams.main$.subscribe(ready, error, complete);
-    return this.streams.main$;
+    this.main$.subscribe(ready, error, complete);
+    return this.main$;
   }
 
   /**
@@ -185,15 +186,18 @@ class NixCore {
         .takeUntil(this._shutdownSubject)
         .share();
 
-    Rx.Observable
-      .merge([
-        this.streams.guildCreate$,
-        this.streams.disconnect$,
-        this.streams.message$,
-        this.streams.command$.flatMap((message) => this.commandManager.runCommandForMsg(message, this)),
-      ])
-      .doOnCompleted(() => this.streams = {})
-      .subscribe();
+    this.streams.allStreams$ =
+      Rx.Observable
+        .merge([
+          this.streams.guildCreate$,
+          this.streams.disconnect$,
+          this.streams.message$,
+          this.streams.command$.flatMap((message) => this.commandManager.runCommandForMsg(message, this)),
+        ])
+        .doOnCompleted(() => this.streams = {})
+        .share();
+
+    return this.streams.allStreams$.ignoreElements();
   }
 
   handleError(context, error) {
