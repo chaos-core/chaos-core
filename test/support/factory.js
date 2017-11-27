@@ -1,9 +1,15 @@
+const sinon = require('sinon');
 const fs = require('fs');
 
 module.exports = {
+  sinon: sinon,
   factories: {},
   sequenceNums: {},
   createStack: [],
+
+  setSandbox(sandbox) {
+    this.sinon = sandbox;
+  },
 
   define(name, factoryFn) {
     this.factories[name.toLowerCase()] = factoryFn;
