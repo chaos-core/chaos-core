@@ -1,4 +1,3 @@
-const sinon = require('sinon');
 const NixCore = require('../../nix-core');
 
 const Factory = require('../support/factory');
@@ -15,8 +14,8 @@ Factory.define('NixCore', (options = {}) => {
   let nixCore = new NixCore(data);
 
   // Stub out networked methods
-  sinon.stub(nixCore.discord, 'login').resolves();
-  sinon.stub(nixCore.discord.users, 'fetch').withArgs(options.owner.id).resolves(options.owner);
+  Factory.sinon.stub(nixCore.discord, 'login').resolves();
+  Factory.sinon.stub(nixCore.discord.users, 'fetch').withArgs(options.owner.id).resolves(options.owner);
 
   return nixCore;
 });

@@ -7,6 +7,8 @@ const Factory = require("./../support/factory");
 const expect = chai.expect;
 chai.use(sinonChai);
 
+Factory.setSandbox(sinon);
+
 const CommandManager = require('./../../lib/managers/command-manager');
 const Context = require('./../../lib/models/Context');
 const Command = require('./../../lib/models/command');

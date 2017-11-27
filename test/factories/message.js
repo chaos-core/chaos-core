@@ -1,4 +1,3 @@
-const sinon = require('sinon');
 const Discord = require('discord.js');
 
 const Factory = require('../support/factory');

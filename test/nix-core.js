@@ -6,6 +6,8 @@ const Factory = require("./support/factory");
 const expect = chai.expect;
 chai.use(sinonChai);
 
+Factory.setSandbox(sinon);
+
 const NixCore = require('./../nix-core');
 
 

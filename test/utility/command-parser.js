@@ -7,6 +7,8 @@ const Factory = require("./../support/factory");
 const expect = chai.expect;
 chai.use(sinonChai);
 
+Factory.setSandbox(sinon);
+
 const CommandParser = require('../../lib/utility/command-parser');
 
 describe('CommandParser', function () {
