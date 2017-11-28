@@ -16,8 +16,13 @@ module.exports = {
   },
 
   create(name, options = {}) {
+    let factory = this.factories[name.toLowerCase()];
+    if (!factory) {
+      throw new Error(`There is no factory named ${name}.`);
+    }
+
     this.createStack.unshift(name.toLowerCase());
-    let object = this.factories[name.toLowerCase()](options);
+    let object = factory(options);
     this.createStack.shift();
 
     return object;
