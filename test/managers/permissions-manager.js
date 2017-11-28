@@ -335,4 +335,56 @@ describe('PermissionsManager', function () {
       });
     });
   });
+
+  describe('#filterHasPermission', function () {
+    let command;
+    let cmdContext;
+    let response;
+
+    beforeEach(function () {
+      command = {};
+      cmdContext = {};
+      response = {};
+    });
+
+    context("when the user does not have permission", function() {
+      beforeEach(function () {
+        sinon.stub(permissionsManager, 'hasPermission').returns(Rx.Observable.return(false));
+      });
+
+      it('does not stream any elements', function (done) {
+        let nextSpy = sinon.spy();
+
+        permissionsManager.filterHasPermission(command, cmdContext, response)
+          .subscribe(
+            (item) => nextSpy(item),
+            (err) => done(err),
+            () => {
+              expect(nextSpy).not.to.have.been.called;
+              done();
+            }
+          );
+      });
+    });
+
+    context("when the user does have permission", function () {
+      beforeEach(function () {
+        sinon.stub(permissionsManager, 'hasPermission').returns(Rx.Observable.return(true));
+      });
+
+      it('does not stream any elements', function (done) {
+        let nextSpy = sinon.spy();
+
+        permissionsManager.filterHasPermission(command, cmdContext, response)
+          .subscribe(
+            (item) => nextSpy(item),
+            (err) => done(err),
+            () => {
+              expect(nextSpy).to.have.been.calledWith(true);
+              done();
+            }
+          );
+      });
+    });
+  });
 });
