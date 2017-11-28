@@ -1,4 +1,4 @@
-const Rx = require('Rx');
+const Rx = require('rx');
 const Factory = require('../support/factory');
 
 const DataManager = require('../../lib/managers/data-manager');
