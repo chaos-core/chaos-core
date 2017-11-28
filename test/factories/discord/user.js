@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-const Factory = require('../support/factory');
+const Factory = require('../../support/factory');
 
 Factory.define('User', (options) => {
   let userData = Object.assign({

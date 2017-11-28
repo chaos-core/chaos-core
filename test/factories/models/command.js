@@ -1,6 +1,6 @@
-const Factory = require('../support/factory');
+const Factory = require('../../support/factory');
 
-const Command = require('../../lib/models/command');
+const Command = require('../../../lib/models/command');
 
 Factory.define('Command', (options) => {
   let data = Object.assign({
