@@ -220,66 +220,43 @@ describe('CommandManager', function () {
       });
     });
 
-    describe('admin only check', function () {
+    describe('has permission check', function () {
       it('runs the check', function (done) {
-        sinon.stub(cmdManager, '_filterAdminOnly').returns(Rx.Observable.return(true));
+        sinon.stub(cmdManager, '_filterHasPermission').returns(Rx.Observable.return(true));
 
         cmdManager.runCommandForMsg(message, nix)
           .subscribe(
             () => {},
             (err) => done(err),
             () => {
-              expect(cmdManager._filterAdminOnly).to.have.been.called;
+              expect(cmdManager._filterHasPermission).to.have.been.called;
               done();
             }
           );
       });
 
-      context('when the command is admin only', function () {
+      context('when the user does not have permission', function () {
         beforeEach(function () {
-          command.adminOnly = true;
+          sinon.stub(cmdManager, '_filterHasPermission').returns(Rx.Observable.empty());
         });
 
-        context('when the user is not the owner', function () {
-          beforeEach(function () {
-            message.author = Factory.create('User');
-          });
-
-          it('does not run the command', function (done) {
-            cmdManager.runCommandForMsg(message, nix)
-              .subscribe(
-                () => {},
-                (err) => done(err),
-                () => {
-                  expect(command.run).not.to.have.been.called;
-                  done();
-                }
-              );
-          });
-        });
-
-        context('when the user is the owner', function () {
-          beforeEach(function () {
-            message.author = nix.owner;
-          });
-
-          it('runs the command', function (done) {
-            cmdManager.runCommandForMsg(message, nix)
-              .subscribe(
-                () => {},
-                (err) => done(err),
-                () => {
-                  expect(command.run).to.have.been.called;
-                  done();
-                }
-              );
-          });
+        it('does not run the command', function (done) {
+          cmdManager.runCommandForMsg(message, nix)
+            .subscribe(
+              () => {
+              },
+              (err) => done(err),
+              () => {
+                expect(command.run).not.to.have.been.called;
+                done();
+              }
+            );
         });
       });
 
-      context('when the command is not admin only', function () {
+      context('when the user does have permission', function () {
         beforeEach(function () {
-          command.adminOnly = false;
+          sinon.stub(cmdManager, '_filterHasPermission').returns(Rx.Observable.return(true));
         });
 
         it('runs the command', function (done) {

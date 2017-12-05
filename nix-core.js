@@ -49,7 +49,7 @@ class NixCore {
     this._commandManager = new CommandManager(config.commands);
     this._dataManager = new DataManager(config.dataSource);
     this._configManager = new ConfigManager();
-    this._permissionsManager = new PermissionsManager();
+    this._permissionsManager = new PermissionsManager(this._dataManager);
 
     this._shutdownSubject = new Rx.Subject();
 

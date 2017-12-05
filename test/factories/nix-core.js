@@ -17,5 +17,9 @@ Factory.define('NixCore', (options = {}) => {
   Factory.sinon.stub(nixCore.discord, 'login').resolves();
   Factory.sinon.stub(nixCore.discord.users, 'fetch').withArgs(options.owner.id).resolves(options.owner);
 
+  if(options.autoSetOwner) {
+    nixCore._owner = data.owner;
+  }
+
   return nixCore;
 });

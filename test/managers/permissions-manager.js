@@ -23,6 +23,8 @@ describe('PermissionsManager', function () {
     permissionsManager = new PermissionsManager(dataManager);
   });
 
+  afterEach(function () { sinon.restore(); });
+
   describe('constructor', function () {
     it("sets it's dataManager property", function () {
       expect(permissionsManager.dataManager).to.eql(dataManager);
@@ -331,6 +333,181 @@ describe('PermissionsManager', function () {
             () => expect(dataManager.setGuildData).to.have.been.calledWith(guild.id, PERMISSIONS_KEYWORD, expectedData),
             (err) => done(err),
             () => done()
+          );
+      });
+    });
+  });
+
+  describe('#hasPermission', function () {
+    let savedPermissions;
+
+    let guild;
+    let member;
+
+    let command;
+    let cmdContext;
+    let response;
+
+    beforeEach(function () {
+      savedPermissions = {
+        'admin': {
+          users: [],
+          roles: [],
+        },
+        'mod': {
+          users: [],
+          roles: [],
+        },
+      };
+      guild = Factory.create('Guild');
+      member = Factory.create('GuildMember', {guild});
+      command = Factory.create('Command', { permissions: ['admin'] });
+
+      let nix = Factory.create("NixCore", {autoSetOwner: true});
+      cmdContext = Factory.create('Context', {nix});
+      cmdContext.message.member = member;
+
+      sinon.stub(permissionsManager, 'getPermissionsData').callsFake(() => Rx.Observable.return(savedPermissions));
+    });
+
+    context('when the channel is not a text channel', function () {
+      beforeEach(function () {
+        cmdContext.channel.type = 'dm';
+      });
+
+      it('returns true', function (done) {
+        permissionsManager.hasPermission(command, cmdContext, response)
+          .subscribe(
+            (result) => expect(result).to.eql(true),
+            (err) => done(err),
+            () => done()
+          );
+      });
+    });
+
+    context('when the user does not have permission', function () {
+      it('returns false', function (done) {
+        permissionsManager.hasPermission(command, cmdContext, response)
+          .subscribe(
+            (result) => expect(result).to.eql(false),
+            (err) => done(err),
+            () => done()
+          );
+      });
+
+      context('when the user is the bot owner', function () {
+        beforeEach(function () {
+          cmdContext.nix._owner = member;
+        });
+
+        it('returns true', function (done) {
+          permissionsManager.hasPermission(command, cmdContext, response)
+            .subscribe(
+              (result) => expect(result).to.eql(true),
+              (err) => done(err),
+              () => done()
+            );
+        });
+      });
+
+      context('when the user is the guild owner', function () {
+        beforeEach(function () {
+          cmdContext.guild.ownerId = member.id;
+        });
+
+        it('returns true', function (done) {
+          permissionsManager.hasPermission(command, cmdContext, response)
+            .subscribe(
+              (result) => expect(result).to.eql(true),
+              (err) => done(err),
+              () => done()
+            );
+        });
+      });
+    });
+
+    context('when the user has the permission level directly', function () {
+      beforeEach(function () {
+        savedPermissions.admin.users.push(member.id);
+      });
+
+      it('returns true', function (done) {
+        permissionsManager.hasPermission(command, cmdContext, response)
+          .subscribe(
+            (result) => expect(result).to.eql(true),
+            (err) => done(err),
+            () => done()
+          );
+      });
+    });
+
+    context('when the user has the permission level through a role', function () {
+      let role;
+
+      beforeEach(function () {
+        role = Factory.create('Role', {guild});
+        member.addRole(role);
+        savedPermissions.admin.roles.push(role.id);
+      });
+
+      it('returns true', function (done) {
+        permissionsManager.hasPermission(command, cmdContext, response)
+          .subscribe(
+            (result) => expect(result).to.eql(true),
+            (err) => done(err),
+            () => done()
+          );
+      });
+    });
+  });
+
+  describe('#filterHasPermission', function () {
+    let command;
+    let cmdContext;
+    let response;
+
+    beforeEach(function () {
+      command = {};
+      cmdContext = {};
+      response = {};
+    });
+
+    context("when the user does not have permission", function() {
+      beforeEach(function () {
+        sinon.stub(permissionsManager, 'hasPermission').returns(Rx.Observable.return(false));
+      });
+
+      it('does not stream any elements', function (done) {
+        let nextSpy = sinon.spy();
+
+        permissionsManager.filterHasPermission(command, cmdContext, response)
+          .subscribe(
+            (item) => nextSpy(item),
+            (err) => done(err),
+            () => {
+              expect(nextSpy).not.to.have.been.called;
+              done();
+            }
+          );
+      });
+    });
+
+    context("when the user does have permission", function () {
+      beforeEach(function () {
+        sinon.stub(permissionsManager, 'hasPermission').returns(Rx.Observable.return(true));
+      });
+
+      it('does not stream any elements', function (done) {
+        let nextSpy = sinon.spy();
+
+        permissionsManager.filterHasPermission(command, cmdContext, response)
+          .subscribe(
+            (item) => nextSpy(item),
+            (err) => done(err),
+            () => {
+              expect(nextSpy).to.have.been.calledWith(true);
+              done();
+            }
           );
       });
     });

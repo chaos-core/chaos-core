@@ -27,11 +27,12 @@
     "rx": "^4.1.0"
   },
   "devDependencies": {
-    "discord.js": "github:hydrabolt/discord.js#master",
-    "rx": "^4.1.0",
     "chai": "*",
+    "discord.js": "github:hydrabolt/discord.js#master",
     "eslint": "^4.11.0",
+    "glob": "^7.1.2",
     "mocha": "^4.0.1",
+    "rx": "^4.1.0",
     "sinon": "^4.1.2",
     "sinon-chai": "^2.14.0"
   }

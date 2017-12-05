@@ -1,5 +1,5 @@
 const sinon = require('sinon');
-const fs = require('fs');
+const glob = require('glob');
 
 module.exports = {
   sinon: sinon,
@@ -42,4 +42,6 @@ module.exports = {
   },
 };
 
-fs.readdirSync(__dirname + '/../factories').map((file) => require(__dirname + '/../factories/' + file));
+glob(__dirname + '/../factories/**/*.js', (err, files) => {
+  files.forEach((file) => require(file));
+});
