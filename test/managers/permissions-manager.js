@@ -363,7 +363,8 @@ describe('PermissionsManager', function () {
       member = Factory.create('GuildMember', {guild});
       command = Factory.create('Command', { permissions: ['admin'] });
 
-      cmdContext = Factory.create('Context');
+      let nix = Factory.create("NixCore", {autoSetOwner: true});
+      cmdContext = Factory.create('Context', {nix});
       cmdContext.message.member = member;
 
       sinon.stub(permissionsManager, 'getPermissionsData').callsFake(() => Rx.Observable.return(savedPermissions));
@@ -392,6 +393,21 @@ describe('PermissionsManager', function () {
             (err) => done(err),
             () => done()
           );
+      });
+
+      context('when the user is the owner', function () {
+        beforeEach(function () {
+          cmdContext.nix._owner = member;
+        });
+
+        it('returns true', function (done) {
+          permissionsManager.hasPermission(command, cmdContext, response)
+            .subscribe(
+              (result) => expect(result).to.eql(true),
+              (err) => done(err),
+              () => done()
+            );
+        });
       });
     });
 

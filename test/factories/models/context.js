@@ -11,7 +11,7 @@ Factory.define('Context', (options) => {
   }, options);
 
   data.message = data.message || Factory.create('Message');
-  data.message = data.message || Factory.create('NixCore');
+  data.nix = data.nix || Factory.create('NixCore');
 
   return new Context(data.message, data.nix, data.params);
 });
