@@ -395,9 +395,24 @@ describe('PermissionsManager', function () {
           );
       });
 
-      context('when the user is the owner', function () {
+      context('when the user is the bot owner', function () {
         beforeEach(function () {
           cmdContext.nix._owner = member;
+        });
+
+        it('returns true', function (done) {
+          permissionsManager.hasPermission(command, cmdContext, response)
+            .subscribe(
+              (result) => expect(result).to.eql(true),
+              (err) => done(err),
+              () => done()
+            );
+        });
+      });
+
+      context('when the user is the guild owner', function () {
+        beforeEach(function () {
+          cmdContext.guild.ownerId = member.id;
         });
 
         it('returns true', function (done) {
