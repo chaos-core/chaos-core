@@ -116,8 +116,6 @@ describe('PermissionsManager', function () {
     });
 
     it('sets data in the dataSource', function (done) {
-      dataManager.setGuildData.withArgs(guildId, PERMISSIONS_KEYWORD, data).returns(Rx.Observable.just(existingData));
-
       permissionsManager
         .setPermissionsData(guildId, data)
         .subscribe(
@@ -128,12 +126,10 @@ describe('PermissionsManager', function () {
     });
 
     it('returns the saved data from the dataSource', function (done) {
-      dataManager.setGuildData.withArgs(guildId, PERMISSIONS_KEYWORD, data).returns(Rx.Observable.just(existingData));
-
       permissionsManager
         .setPermissionsData(guildId, data)
         .subscribe(
-          (savedData) => expect(savedData).to.eql(existingData),
+          (savedData) => expect(savedData).to.eql(data),
           (err) => done(err),
           () => done()
         );

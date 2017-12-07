@@ -10,8 +10,8 @@ Factory.define('DataManager', (options) => {
 
   let dataManager =  new DataManager(data);
 
-  Factory.sinon.stub(dataManager, 'getGuildData').returns(Rx.Observable.just());
-  Factory.sinon.stub(dataManager, 'setGuildData').returns(Rx.Observable.just());
+  Factory.sinon.stub(dataManager, 'getGuildData').callsFake((guildId, keyword) => Rx.Observable.just());
+  Factory.sinon.stub(dataManager, 'setGuildData').callsFake((guildId, keyword, data) => Rx.Observable.just(data));
 
   return dataManager;
 });
