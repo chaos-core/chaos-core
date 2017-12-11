@@ -7,6 +7,7 @@ const Discord = require('discord.js');
 const CommandManager = require('./lib/managers/command-manager');
 const DataManager = require('./lib/managers/data-manager');
 const ConfigManager = require('./lib/managers/config-manager');
+const PermissionsManager = require('./lib/managers/permissions-manager');
 
 const defaultResponseStrings = require('./lib/built-in/reponse-strings');
 const defaultCommandFiles = fs.readdirSync(__dirname + '/lib/built-in/commands')
@@ -48,6 +49,7 @@ class NixCore {
     this._commandManager = new CommandManager(config.commands);
     this._dataManager = new DataManager(config.dataSource);
     this._configManager = new ConfigManager();
+    this._permissionsManager = new PermissionsManager(this._dataManager);
 
     this._shutdownSubject = new Rx.Subject();
 
@@ -66,6 +68,10 @@ class NixCore {
 
   get configManager() {
     return this._configManager;
+  }
+
+  get permissionsManager() {
+    return this._permissionsManager;
   }
 
   /**

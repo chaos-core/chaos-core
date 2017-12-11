@@ -6,6 +6,8 @@ const Factory = require("./support/factory");
 const expect = chai.expect;
 chai.use(sinonChai);
 
+Factory.setSandbox(sinon);
+
 const NixCore = require('./../nix-core');
 
 
@@ -49,7 +51,7 @@ describe('NixCore', function () {
       nix.listen(
         () => {
           nix.streams.message$.subscribe(
-            () => { setTimeout(() => nix.shutdown(), 500); }, // Delay shutdown, to make sure owner is not messaged
+            () => { setTimeout(() => nix.shutdown(), 100); }, // Delay shutdown, to make sure owner is not messaged
             (err) => done(err)
           );
 
@@ -71,7 +73,7 @@ describe('NixCore', function () {
           setTimeout(() => {
             expect(completeSpy).not.to.have.been.called;
             done();
-          }, 500);
+          }, 100);
         },
         (err) => done(err),
         () => completeSpy()

@@ -1,17 +1,28 @@
-const fs = require('fs');
+const sinon = require('sinon');
+const glob = require('glob');
 
 module.exports = {
+  sinon: sinon,
   factories: {},
   sequenceNums: {},
   createStack: [],
+
+  setSandbox(sandbox) {
+    this.sinon = sandbox;
+  },
 
   define(name, factoryFn) {
     this.factories[name.toLowerCase()] = factoryFn;
   },
 
   create(name, options = {}) {
+    let factory = this.factories[name.toLowerCase()];
+    if (!factory) {
+      throw new Error(`There is no factory named ${name}.`);
+    }
+
     this.createStack.unshift(name.toLowerCase());
-    let object = this.factories[name.toLowerCase()](options);
+    let object = factory(options);
     this.createStack.shift();
 
     return object;
@@ -31,4 +42,6 @@ module.exports = {
   },
 };
 
-fs.readdirSync(__dirname + '/../factories').map((file) => require(__dirname + '/../factories/' + file));
+glob(__dirname + '/../factories/**/*.js', (err, files) => {
+  files.forEach((file) => require(file));
+});
