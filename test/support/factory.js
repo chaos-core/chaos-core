@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const glob = require('glob');
 
-module.exports = {
+const Factory = {
   sinon: sinon,
   factories: {},
   sequenceNums: {},
@@ -45,3 +45,5 @@ module.exports = {
 glob(__dirname + '/../factories/**/*.js', (err, files) => {
   files.forEach((file) => require(file));
 });
+
+module.exports = Factory;
