@@ -15,6 +15,10 @@ describe('NixCore', function () {
   let nix;
   let ownerUser;
 
+  before(function (done) {
+    Factory.loadFactories(done);
+  });
+
   beforeEach(function () {
     ownerUser = Factory.create('User');
     nix = Factory.create('NixCore', { owner: ownerUser });

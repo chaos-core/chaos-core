@@ -17,6 +17,11 @@ const NixCore = require('./../../nix-core');
 describe('CommandManager', function () {
   let cmdManager;
 
+  before(function (done) {
+    Factory.loadFactories(done);
+  });
+
+
   beforeEach(function () {
     cmdManager = new CommandManager();
   });

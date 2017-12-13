@@ -1,11 +1,23 @@
 const sinon = require('sinon');
 const glob = require('glob');
 
-module.exports = {
+let factoriesLoaded = false;
+
+const Factory = {
   sinon: sinon,
   factories: {},
   sequenceNums: {},
   createStack: [],
+
+  loadFactories(cb) {
+    if (factoriesLoaded) { return cb(); }
+
+    glob(__dirname + '/../factories/**/*.js', (err, files) => {
+      files.forEach((file) => require(file));
+      factoriesLoaded = true;
+      cb();
+    });
+  },
 
   setSandbox(sandbox) {
     this.sinon = sandbox;
@@ -42,6 +54,4 @@ module.exports = {
   },
 };
 
-glob(__dirname + '/../factories/**/*.js', (err, files) => {
-  files.forEach((file) => require(file));
-});
+module.exports = Factory;

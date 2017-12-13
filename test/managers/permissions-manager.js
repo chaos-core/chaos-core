@@ -18,6 +18,10 @@ describe('PermissionsManager', function () {
   let dataManager;
   let permissionsManager;
 
+  before(function (done) {
+    Factory.loadFactories(done);
+  });
+
   beforeEach(function () {
     dataManager = Factory.create('DataManager');
     permissionsManager = new PermissionsManager(dataManager);
