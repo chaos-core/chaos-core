@@ -166,25 +166,21 @@ class NixCore {
    * @private
    */
   _startEventStreams() {
+    let events = Object.values(Discord.Constants.Events);
+
     this.streams = {};
+    events.forEach((eventType) => {
+      let streamName = eventType + '$';
 
-    this.streams.guildCreate$ =
-      Rx.Observable
-        .fromEvent(this._discord, 'guildCreate')
-        .takeUntil(this._shutdownSubject)
-        .share();
+      let stream$ =
+        Rx.Observable
+          .fromEvent(this._discord, eventType)
+          .takeUntil(this._shutdownSubject)
+          .share();
+      this.streams[streamName] = stream$;
 
-    this.streams.disconnect$ =
-      Rx.Observable
-        .fromEvent(this._discord, 'disconnect')
-        .takeUntil(this._shutdownSubject)
-        .share();
-
-    this.streams.message$ =
-      Rx.Observable
-        .fromEvent(this._discord, 'message')
-        .takeUntil(this._shutdownSubject)
-        .share();
+      return stream$;
+    });
 
     this.streams.command$ =
       this.streams.message$
@@ -192,18 +188,16 @@ class NixCore {
         .takeUntil(this._shutdownSubject)
         .share();
 
-    this.streams.allStreams$ =
+    let eventStreams = Object.values(this.streams);
+    eventStreams.push(this.streams.command$.flatMap((message) => this.commandManager.runCommandForMsg(message, this)));
+
+    this.streams.allEvents$ =
       Rx.Observable
-        .merge([
-          this.streams.guildCreate$,
-          this.streams.disconnect$,
-          this.streams.message$,
-          this.streams.command$.flatMap((message) => this.commandManager.runCommandForMsg(message, this)),
-        ])
+        .merge(eventStreams)
         .doOnCompleted(() => this.streams = {})
         .share();
 
-    return this.streams.allStreams$.ignoreElements();
+    return this.streams.allEvents$.ignoreElements();
   }
 
   handleError(context, error) {
