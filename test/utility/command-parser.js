@@ -12,6 +12,10 @@ Factory.setSandbox(sinon);
 const CommandParser = require('../../lib/utility/command-parser');
 
 describe('CommandParser', function () {
+  before(function (done) {
+    Factory.loadFactories(done);
+  });
+
   describe('::getCommandName', function () {
     context('when given a message with command', function () {
       let message;
