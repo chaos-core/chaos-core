@@ -412,7 +412,7 @@ describe('PermissionsManager', function () {
 
       context('when the user is the guild owner', function () {
         beforeEach(function () {
-          cmdContext.guild.ownerId = member.id;
+          cmdContext.guild.ownerID = member.user.id;
         });
 
         it('returns true', function (done) {

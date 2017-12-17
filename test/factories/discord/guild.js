@@ -8,6 +8,9 @@ Factory.define('Guild', (options) => {
   }, options);
 
   if (!data.client) { data.client = new Discord.Client(); }
+  if (!data.owner) { data.owner = Factory.create('User'); }
+
+  data.owner_id = data.owner.id;
 
   let guild = new Discord.Guild(data.client, data);
 
