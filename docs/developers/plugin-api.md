@@ -44,14 +44,9 @@ module.exports = {
   // learn more.
   commands: [],
   
-  // === Plugin Hooks === //
-  
-  // A hook for when the plugin is enabled in a guild, either at startup, or 
-  // when the plugin is manually enabled.
-  onEnabled: (guild) => {},
-  
-  // A hook for when the plugin is disabled in a guild.
-  onDisabled: (guild) => {},
+  // A Express Router to mount on the webApi at "/{pluginName}"
+  // `req.chaos` is added as a reference to currently running bot
+  webRouter: null,
 }
 
 ```
