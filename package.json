@@ -39,6 +39,7 @@
     "express": "^4.17.1",
     "express-winston": "^4.0.3",
     "http-errors": "~1.6.3",
+    "webpack": "^4.43.0",
     "winston": "^3.2.1"
   },
   "peerDependencies": {
