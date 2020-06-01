@@ -7,11 +7,8 @@ import chaosPlugins from './chaos-plugins';
 const App = () => (
   <div>
     Hello from React!
-    {Object.entries(chaosPlugins).map(([pluginName, comps]) => (
-      <div key={pluginName}>
-        <h1>{pluginName}</h1>
-        {comps.map((Comp, index) => (<Comp key={index}/>))}
-      </div>
+    {Object.entries(chaosPlugins).map(([pluginName, App]) => (
+      <App key={pluginName}/>
     ))}
   </div>
 );

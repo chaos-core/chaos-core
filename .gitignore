@@ -13,3 +13,4 @@
 .idea/
 
 lib/plugins/web-api/web-server/public/client.bundle.js
+lib/plugins/web-api/web-client/chaos-plugins.js
