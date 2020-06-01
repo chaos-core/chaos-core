@@ -4,8 +4,10 @@ import ReactDOM from "react-dom";
 
 import chaosPlugins from './chaos-plugins';
 
+import "./index.scss";
+
 const App = () => (
-  <div>
+  <div className={"CoreApp"}>
     Hello from React!
     {Object.entries(chaosPlugins).map(([pluginName, App]) => (
       <App key={pluginName}/>

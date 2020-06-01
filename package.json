@@ -38,6 +38,7 @@
     "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",
     "cookie-parser": "~1.4.4",
+    "css-loader": "^3.5.3",
     "debug": "~2.6.9",
     "deepmerge": "^4.2.2",
     "eslint-plugin-react": "^7.20.0",
@@ -46,6 +47,9 @@
     "http-errors": "~1.6.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "sass": "^1.26.7",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "winston": "^3.2.1"
   },
