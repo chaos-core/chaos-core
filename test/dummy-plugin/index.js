@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   name: "dummy",
   permissionLevels: [
@@ -36,4 +38,5 @@ module.exports = {
       },
     },
   ],
+  webClient: path.resolve(__dirname),
 };
