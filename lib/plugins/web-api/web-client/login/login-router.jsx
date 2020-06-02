@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
+import CallbackPage from "./callback.page.jsx";
+import IndexPage from "./index-page.jsx";
+
 const LoginRouter = () => {
   let match = useRouteMatch();
 
@@ -8,10 +11,10 @@ const LoginRouter = () => {
     <div>
       <Switch>
         <Route path={`${match.path}/callback`}>
-          <div>Welcome back. Let me check your ID.</div>
+          <CallbackPage/>
         </Route>
         <Route path={match.path}>
-          <div>Redirecting to Discord...</div>
+          <IndexPage/>
         </Route>
       </Switch>
     </div>
