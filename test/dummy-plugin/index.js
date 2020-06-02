@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   name: "dummy",
   permissionLevels: [
@@ -38,6 +36,4 @@ module.exports = {
       },
     },
   ],
-  webRouter: require('./web-router'),
-  webClient: path.resolve(__dirname),
 };
