@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
-import CallbackPage from "./callback.page.jsx";
-import IndexPage from "./index-page.jsx";
+import { CallbackPage, IndexPage } from "./index.js";
 
 const LoginRouter = () => {
   let match = useRouteMatch();
