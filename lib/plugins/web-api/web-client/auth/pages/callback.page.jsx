@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import axios from 'axios';
+
+import AuthService from "../auth-service";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -25,10 +26,9 @@ const ErrorPage = ({ errorMsg }) => (
 
 const AuthorizingPage = ({ code }) => {
   useEffect(() => {
-    (async () => {
-      let response = await axios.post("/api/login", { code });
-      console.log(response.data);
-    })();
+    AuthService.login(code)
+      .then(() => console.log(AuthService.currentUser))
+      .catch(console.error);
   }, []);
 
   return (

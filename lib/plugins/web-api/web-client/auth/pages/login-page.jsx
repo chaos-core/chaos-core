@@ -1,11 +1,11 @@
-import React from "react";
 import queryString from "query-string";
+import React from "react";
 
-import styles from "./index-page.module.scss";
+import { config } from "../../chaos-client";
 
-import { config } from "../chaos-client";
+import styles from "./login-page.module.scss";
 
-export const IndexPage = () => (
+export const LoginPage = () => (
   <div className={styles.indexPage}>
     <DiscordLoginBtn/>
   </div>
