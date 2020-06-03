@@ -1,18 +1,13 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { LoginRouter } from "./auth";
+import React, { useContext } from "react";
+import { UserContext } from "./contexts.js";
 
-const AppRouter = () => (
-  <Router>
-    <Switch>
-      <Route path={`/login`}>
-        <LoginRouter/>
-      </Route>
-      <Route path="/">
-        <div>Index!</div>
-      </Route>
-    </Switch>
-  </Router>
-);
+const AppRouter = () => {
+  const userContext = useContext(UserContext);
+  const user = userContext.currentUser;
+
+  return (
+    <div>Welcome {user.tag}!</div>
+  );
+};
 
 export default AppRouter;

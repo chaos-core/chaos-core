@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import AppRouter from "./app-router.jsx";
-import styles from "./index.module.scss";
+import { AuthService } from "./auth";
+import { AuthGate, LoginRouter } from "./auth/components";
+import { UserContext } from "./contexts.js";
 
+import styles from "./index.module.scss";
 import "./index.scss";
 
-const App = () => (
-  <div className={styles.app}>
-    <AppRouter/>
-  </div>
-);
+const App = () => {
+  const [currentUser, setCurrentUser] = useState(AuthService.getUser());
+
+  return (
+    <div className={styles.app}>
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <Router>
+          <AuthGate
+            loggedOut={<LoginRouter/>}
+            loggedIn={<AppRouter/>}
+          />
+        </Router>
+      </UserContext.Provider>
+    </div>
+  );
+};
 
 ReactDOM.render(<App/>, document.getElementById("app"));

@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
+import { UserContext } from "../../contexts.js";
 import AuthService from "../auth-service";
 
 function useQuery() {
@@ -13,7 +14,12 @@ export const CallbackPage = () => {
   if (query.get("error")) {
     return <ErrorPage errorMsg={query.get("error_description")}/>;
   } else {
-    return <AuthorizingPage code={query.get("code")}/>;
+    return (
+      <UserContext.Consumer>
+        {({ setCurrentUser }) => <AuthorizingPage code={query.get("code")}
+                                                  setCurrentUser={setCurrentUser}/>}
+      </UserContext.Consumer>
+    );
   }
 };
 
@@ -24,16 +30,19 @@ const ErrorPage = ({ errorMsg }) => (
   </div>
 );
 
-const AuthorizingPage = ({ code }) => {
+const AuthorizingPage = ({ code, setCurrentUser }) => {
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     AuthService.login(code)
-      .then(() => console.log(AuthService.currentUser))
-      .catch(console.error);
+      .then(() => new Promise((resolve => setTimeout(resolve, 500))))
+      .then(() => setCurrentUser(AuthService.getUser()))
+      .catch(() => setError(true));
   }, []);
 
-  return (
-    <div>
-      Welcome back. Let me check your ID.
-    </div>
-  );
+  if (error) {
+    return (<div>Hmm... Something went wrong.</div>);
+  } else {
+    return (<div>Logging in...</div>);
+  }
 };
