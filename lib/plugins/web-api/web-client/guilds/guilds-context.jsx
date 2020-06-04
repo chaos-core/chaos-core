@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ChaosApiService from "../chaos-api-service.js";
 
-const initialState = {
+const GuildsContext = React.createContext({
   guilds: {},
-  setGuilds: () => {},
   fetching: false,
-};
-
-const GuildsContext = React.createContext(initialState);
+});
 export default GuildsContext;
 
 async function fetchGuilds() {
@@ -16,12 +13,11 @@ async function fetchGuilds() {
 }
 
 export const GuildsProvider = ({ children }) => {
-  const [guilds, setGuilds] = useState(initialState.guilds);
+  const [guilds, setGuilds] = useState({});
   const [fetching, setFetching] = useState(false);
 
   const state = {
     guilds,
-    setGuilds,
     fetching,
   };
 
