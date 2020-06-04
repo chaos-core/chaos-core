@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { LogoutBtn } from "./auth/components";
 import { UserContext } from "./contexts.js";
+import { UserAvatar } from "./user/components";
 
 const AppRouter = () => {
   const userContext = useContext(UserContext);
@@ -11,6 +12,7 @@ const AppRouter = () => {
   return (
     <div>
       <div>
+        <UserAvatar/>
         Welcome {user.tag}!
         <LogoutBtn/>
       </div>

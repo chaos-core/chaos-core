@@ -1,0 +1,9 @@
+.userAvatar {
+  width: 64px;
+  height: 64px;
+
+  &.large {
+    width: 128px;
+    height: 128px;
+  }
+}
