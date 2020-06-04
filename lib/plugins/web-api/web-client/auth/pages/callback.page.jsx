@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { UserContext } from "../../contexts.js";
 import AuthService from "../auth-service";
@@ -16,8 +16,12 @@ export const CallbackPage = () => {
   } else {
     return (
       <UserContext.Consumer>
-        {({ setCurrentUser }) => <AuthorizingPage code={query.get("code")}
-                                                  setCurrentUser={setCurrentUser}/>}
+        {({ setCurrentUser }) => (
+          <AuthorizingPage
+            code={query.get("code")}
+            setCurrentUser={setCurrentUser}
+          />
+        )}
       </UserContext.Consumer>
     );
   }
@@ -31,18 +35,17 @@ const ErrorPage = ({ errorMsg }) => (
 );
 
 const AuthorizingPage = ({ code, setCurrentUser }) => {
+  const history = useHistory();
   const [error, setError] = useState(false);
-
-  useEffect(() => {
-    AuthService.login(code)
-      .then(() => new Promise((resolve => setTimeout(resolve, 500))))
-      .then(() => setCurrentUser(AuthService.getUser()))
-      .catch(() => setError(true));
-  }, []);
 
   if (error) {
     return (<div>Hmm... Something went wrong.</div>);
   } else {
+    AuthService.login(code)
+      .then(() => setCurrentUser(AuthService.getUser()))
+      .then(() => history.push('/'))
+      .catch(() => setError(true));
+
     return (<div>Logging in...</div>);
   }
 };
