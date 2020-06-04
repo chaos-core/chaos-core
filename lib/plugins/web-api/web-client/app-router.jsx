@@ -1,4 +1,7 @@
 import React, { useContext } from "react";
+import { Route, Switch } from "react-router-dom";
+
+import { LogoutBtn } from "./auth/components";
 import { UserContext } from "./contexts.js";
 
 const AppRouter = () => {
@@ -6,7 +9,18 @@ const AppRouter = () => {
   const user = userContext.currentUser;
 
   return (
-    <div>Welcome {user.tag}!</div>
+    <div>
+      <div>
+        Welcome {user.tag}!
+        <LogoutBtn/>
+      </div>
+
+      <Switch>
+        <Route path={'/'}>
+          <div>404: Page not found</div>
+        </Route>
+      </Switch>
+    </div>
   );
 };
 
