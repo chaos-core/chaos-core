@@ -1,0 +1,8 @@
+.logoutBtn {
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    color: coral;
+  }
+}
