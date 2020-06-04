@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import GuildsContext from "../guilds-context.jsx";
+import GuildIcon from "./guild-icon.jsx";
 
 const GuildsList = () => {
   const { guilds, fetching } = useContext(GuildsContext);
@@ -10,7 +11,8 @@ const GuildsList = () => {
     <div>
       {Object.values(guilds).map((guild) => (
         <div key={guild.id}>
-          {guild.name} ({guild.id})
+          <GuildIcon guild={guild}/>
+          {guild.name}
         </div>
       ))}
     </div>
