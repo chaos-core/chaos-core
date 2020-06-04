@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { LogoutBtn } from "./auth/components";
-import { UserContext } from "./contexts.js";
+import { UserContext } from "./user";
 import { UserAvatar } from "./user/components";
 
 const AppRouter = () => {

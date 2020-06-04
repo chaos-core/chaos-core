@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../contexts.js";
+import { UserContext } from "../../user";
 import AuthService from "../auth-service.js";
 
 import styles from "./logout-btn.module.scss";

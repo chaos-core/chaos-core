@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from "../../contexts.js";
+import { UserContext } from "./../index.js";
 
 import styles from "./user-avatar.module.scss";
 

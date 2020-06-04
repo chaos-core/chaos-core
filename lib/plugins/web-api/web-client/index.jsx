@@ -5,10 +5,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import AppRouter from "./app-router.jsx";
 import { AuthService } from "./auth";
 import { AuthGate, LoginRouter } from "./auth/components";
-import { UserContext } from "./contexts.js";
 
 import styles from "./index.module.scss";
 import "./index.scss";
+import { UserContext } from "./user";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getUser());

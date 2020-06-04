@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { UserContext } from "../../contexts.js";
+import { UserContext } from "../../user";
 import AuthService from "../auth-service";
 
 function useQuery() {
