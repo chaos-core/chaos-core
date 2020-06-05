@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 
 import { UserContext, UserAvatar } from "../user";
-import { LogoutBtn } from "../auth";
 
 import "./app-header.scss";
+import UserService from "../user/user-service.js";
 
 const AppHeader = () => {
   return (
@@ -12,6 +12,8 @@ const AppHeader = () => {
     </div>
   );
 };
+
+export default AppHeader;
 
 const UserArea = () => {
   const { currentUser } = useContext(UserContext);
@@ -26,4 +28,15 @@ const UserArea = () => {
   );
 };
 
-export default AppHeader;
+const LogoutBtn = () => {
+  const userContext = useContext(UserContext);
+
+  function onClick() {
+    UserService.logout();
+    userContext.setCurrentUser(null);
+  }
+
+  return (
+    <span className={"logoutBtn"} onClick={onClick}>Logout</span>
+  );
+};

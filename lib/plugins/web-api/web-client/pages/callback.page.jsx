@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { UserContext } from "../user";
-import { AuthService } from "../auth";
+import { UserContext, UserService } from "../user";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -41,8 +40,8 @@ const AuthorizingPage = ({ code, setCurrentUser }) => {
   if (error) {
     return (<div>Hmm... Something went wrong.</div>);
   } else {
-    AuthService.login(code)
-      .then(() => setCurrentUser(AuthService.getUser()))
+    UserService.login(code)
+      .then(() => setCurrentUser(UserService.getUser()))
       .then(() => history.replace('/'))
       .catch(() => setError(true));
 

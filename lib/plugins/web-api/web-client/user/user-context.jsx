@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthService from "../auth/auth-service.js";
+import UserService from "./user-service.js";
 
 export const UserContext = React.createContext({
   currentUser: null,
@@ -7,7 +7,7 @@ export const UserContext = React.createContext({
 });
 
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(AuthService.getUser());
+  const [currentUser, setCurrentUser] = useState(UserService.getUser());
   const contextState = { currentUser, setCurrentUser };
   return <UserContext.Provider value={contextState} children={children}/>;
 };
