@@ -7,12 +7,9 @@ import { UserContext } from "../user";
 
 import "./login-page.scss";
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 function useParam(key) {
-  return useQuery().get(key);
+  const query = new URLSearchParams(useLocation().search);
+  return query.get(key);
 }
 
 export const LoginPage = () => {

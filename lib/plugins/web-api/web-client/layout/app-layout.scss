@@ -20,6 +20,10 @@
 
     margin: 8px;
     padding: 8px;
+
+    & + main {
+      margin-top: 0;
+    }
   }
 
   main {
@@ -27,7 +31,7 @@
 
     border-radius: 8px;
 
-    margin: 0 8px 8px;
+    margin: 8px;
     padding: 8px;
 
     background-color: $colour-light;
