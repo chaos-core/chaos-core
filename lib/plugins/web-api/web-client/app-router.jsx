@@ -1,18 +1,26 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useContext } from "react";
+import { Route, Switch, BrowserRouter as Router, Redirect } from "react-router-dom";
+
+import { UserContext } from "./user";
+import { HomePage, CallbackPage, LoginPage } from "./pages";
 
 const AppRouter = () => {
+  const { currentUser } = useContext(UserContext);
+
   return (
-    <div>
+    <Router>
       <Switch>
-        <Route exact path={'/'}>
-          Index
+        <Route exact path={`/login`}>
+          {currentUser ? <Redirect to={"/"}/> : <LoginPage/>}
+        </Route>
+        <Route exact path={`/login/callback`}>
+          {currentUser ? <Redirect to={"/"}/> : <CallbackPage/>}
         </Route>
         <Route path={'/'}>
-          <div>404: Page not found</div>
+          {currentUser ? <HomePage/> : <Redirect to={"/login"}/>}
         </Route>
       </Switch>
-    </div>
+    </Router>
   );
 };
 
