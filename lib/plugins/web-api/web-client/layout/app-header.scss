@@ -3,32 +3,50 @@
 
 .appHeader {
   background: $colour-primary;
+  display: flex;
 
+  .guildArea,
   .userArea {
-    .userAvatar {
-      vertical-align: middle;
-      margin-right: 4px;
-    }
+    flex-grow: 1;
 
+    .guildName,
     .userTag {
       display: block;
       font-family: $font-display;
       font-size: 20px;
     }
+
+    .logoutBtn,
+    .selectGuildBtn {
+      cursor: pointer;
+      color: $colour-secondary;
+      font-size: 12px;
+
+      margin: -4px;
+      padding: 4px;
+      border-radius: 4px;
+
+      &:hover {
+        background: $colour-accent;
+      }
+    }
   }
 
-  .logoutBtn {
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: 12px;
+  .guildArea {
+    text-align: left;
 
-    margin: -4px;
-    padding: 4px;
-    border-radius: 4px;
+    .guildIcon {
+      margin-right: 8px;
+      float: left;
+    }
+  }
 
-    &:hover {
-      background: $colour-accent;
-      color: $colour-dark;
+  .userArea {
+    text-align: right;
+
+    .userAvatar {
+      margin-left: 8px;
+      float: right;
     }
   }
 }
