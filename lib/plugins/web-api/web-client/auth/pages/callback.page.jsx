@@ -43,7 +43,7 @@ const AuthorizingPage = ({ code, setCurrentUser }) => {
   } else {
     AuthService.login(code)
       .then(() => setCurrentUser(AuthService.getUser()))
-      .then(() => history.push('/'))
+      .then(() => history.replace('/'))
       .catch(() => setError(true));
 
     return (<div>Logging in...</div>);
