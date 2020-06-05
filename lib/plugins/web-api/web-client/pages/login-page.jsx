@@ -20,7 +20,7 @@ const DiscordLoginBtn = () => {
         "redirect_uri": config.clientUrl + "/login/callback",
         "response_type": "code",
         "scope": "identify guilds",
-        "prompt": "none",
+        // "prompt": "none",
       },
     });
   }
