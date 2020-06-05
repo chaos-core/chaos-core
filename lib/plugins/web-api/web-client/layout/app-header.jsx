@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 
 import { UserContext, UserAvatar } from "../user";
-import { AuthGate, LogoutBtn } from "../auth";
+import { LogoutBtn } from "../auth";
 
 import "./app-header.scss";
 
 const AppHeader = () => {
   return (
     <div className={"appHeader"}>
-      <AuthGate loggedIn={<UserArea/>}/>
+      <UserArea/>
     </div>
   );
 };
 
 const UserArea = () => {
   const { currentUser } = useContext(UserContext);
+  if (!currentUser) return null;
 
   return (
     <div className={"userArea"}>
