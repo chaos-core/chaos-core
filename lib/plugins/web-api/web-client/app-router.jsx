@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Route, Switch, BrowserRouter as Router, Redirect } from "react-router-dom";
 
 import { UserContext } from "./user";
-import { HomePage, CallbackPage, LoginPage } from "./pages";
+import { HomePage, LoginPage } from "./pages";
 
 const AppRouter = () => {
   const { currentUser } = useContext(UserContext);
@@ -10,11 +10,8 @@ const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path={`/login`}>
+        <Route path={`/login`}>
           {currentUser ? <Redirect to={"/"}/> : <LoginPage/>}
-        </Route>
-        <Route exact path={`/login/callback`}>
-          {currentUser ? <Redirect to={"/"}/> : <CallbackPage/>}
         </Route>
         <Route path={'/'}>
           {currentUser ? <HomePage/> : <Redirect to={"/login"}/>}
