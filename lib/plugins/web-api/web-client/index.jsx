@@ -16,12 +16,14 @@ const App = () => {
   return (
     <div className={styles.app}>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <Router>
-          <AuthGate
-            loggedOut={<LoginRouter/>}
-            loggedIn={<AppRouter/>}
-          />
-        </Router>
+        <main>
+          <Router>
+            <AuthGate
+              loggedOut={<LoginRouter/>}
+              loggedIn={<AppRouter/>}
+            />
+          </Router>
+        </main>
       </UserContext.Provider>
     </div>
   );

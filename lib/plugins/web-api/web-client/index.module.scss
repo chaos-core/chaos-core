@@ -1,7 +1,23 @@
+@import "styles/colours";
+
 .app {
+  $app-padding: 12px;
+
   display: block;
   height: 100vh;
   width: 100vw;
+  padding: $app-padding;
 
-  background: whitesmoke;
+  background: $colour-dark;
+
+  main {
+    display: block;
+    background-color: $colour-light;
+
+    border-radius: 8px;
+    padding: 8px;
+
+    height: calc(100vh - #{$app-padding * 2});
+    width: calc(100vw - #{$app-padding * 2});
+  }
 }
