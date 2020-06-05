@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import "./user-avatar.scss";
 
 const UserAvatar = ({ user, size = "normal" }) => {
-  console.log(user);
   const imgUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
   const imgClass = classNames(["userAvatar", size]);
   return <img className={imgClass} src={imgUrl} alt={user.tag}/>;

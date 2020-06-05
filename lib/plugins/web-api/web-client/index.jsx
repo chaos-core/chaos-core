@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import AppRouter from "./app-router.jsx";
-import { AuthService, AuthGate, LoginRouter } from "./auth";
+import { AuthGate, LoginRouter } from "./auth";
 import { AppLayout } from "./layout";
-import { UserContext } from "./user";
 
 import "./index.scss";
+import { UserProvider } from "./user";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(AuthService.getUser());
-
   return (
     <div className={"app"}>
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserProvider>
         <AppLayout>
           <Router>
             <AuthGate
@@ -23,7 +21,7 @@ const App = () => {
             />
           </Router>
         </AppLayout>
-      </UserContext.Provider>
+      </UserProvider>
     </div>
   );
 };
