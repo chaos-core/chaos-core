@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { GuildsProvider } from "./guilds";
-import { GuildsList } from "./guilds/components";
+import { GuildsProvider, GuildsList } from "./guilds";
 
 const AppRouter = () => {
   return (

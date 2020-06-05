@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { UserContext } from "../../user";
-import AuthService from "../auth-service";
+import { UserContext } from "../user";
+import { AuthService } from "../auth";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

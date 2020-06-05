@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import GuildsContext from "../guilds-context.jsx";
+import GuildsContext from "./guilds-context.jsx";
 import GuildIcon from "./guild-icon.jsx";
 
 const GuildsList = () => {

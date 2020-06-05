@@ -1,5 +1,5 @@
 import React from "react";
-import { AppHeader } from "./components";
+import AppHeader from "./app-header.jsx";
 
 import "./app-layout.scss";
 

@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 
-import { UserContext } from "../../user";
-import { UserAvatar } from "../../user/components";
-import { AuthGate, LogoutBtn } from "../../auth/components";
+import { UserContext, UserAvatar } from "../user";
+import { AuthGate, LogoutBtn } from "../auth";
 
 import "./app-header.scss";
 

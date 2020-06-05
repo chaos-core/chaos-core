@@ -1,7 +1,7 @@
 import queryString from "query-string";
 import React from "react";
 
-import { config } from "../../chaos-client";
+import { config } from "../chaos-client.js";
 
 import "./login-page.scss";
 

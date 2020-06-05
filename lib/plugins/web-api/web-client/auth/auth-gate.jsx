@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../user";
+import { UserContext } from "../user";
 
 const AuthGate = ({ loggedIn = "", loggedOut = "" }) => {
   const userContext = useContext(UserContext);

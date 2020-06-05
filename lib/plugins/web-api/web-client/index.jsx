@@ -3,8 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import AppRouter from "./app-router.jsx";
-import { AuthService } from "./auth";
-import { AuthGate, LoginRouter } from "./auth/components";
+import { AuthService, AuthGate, LoginRouter } from "./auth";
 import { AppLayout } from "./layout";
 import { UserContext } from "./user";
 
