@@ -3,6 +3,7 @@
   "version": "5.1.0",
   "description": "A framework for discord bots",
   "homepage": "",
+  "type": "commonjs",
   "author": {
     "name": "Stephen A. Wilson",
     "email": "Stephen-356@hotmail.com",
