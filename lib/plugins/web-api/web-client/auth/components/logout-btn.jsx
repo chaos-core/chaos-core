@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../user";
 import AuthService from "../auth-service.js";
 
-import styles from "./logout-btn.module.scss";
+import "./logout-btn.scss";
 
 const LogoutBtn = () => {
   const userContext = useContext(UserContext);
@@ -13,7 +13,7 @@ const LogoutBtn = () => {
   }
 
   return (
-    <div className={styles.logoutBtn} onClick={onClick}>Logout</div>
+    <span className={"logoutBtn"} onClick={onClick}>Logout</span>
   );
 };
 

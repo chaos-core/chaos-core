@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
-import { UserContext } from "./../index.js";
+import React from 'react';
+import classNames from 'classnames';
 
-import styles from "./user-avatar.module.scss";
+import "./user-avatar.scss";
 
-const UserAvatar = () => {
-  const { currentUser } = useContext(UserContext);
-  const imgUrl = `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`;
-  return <img className={styles.userAvatar} src={imgUrl} alt={currentUser.tag}/>;
+const UserAvatar = ({ user, size = "normal" }) => {
+  console.log(user);
+  const imgUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+  const imgClass = classNames(["userAvatar", size]);
+  return <img className={imgClass} src={imgUrl} alt={user.tag}/>;
 };
 
 export default UserAvatar;

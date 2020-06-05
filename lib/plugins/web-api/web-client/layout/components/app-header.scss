@@ -1,0 +1,20 @@
+@import "../../styles/colours";
+@import "../../styles/fonts";
+
+.appHeader {
+  background: $colour-primary;
+
+  .userArea {
+    .userAvatar {
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+
+    .userTag {
+      display: block;
+      font-family: $font-display;
+      font-size: 20px;
+    }
+  }
+}
+

@@ -3,10 +3,10 @@ import React from "react";
 
 import { config } from "../../chaos-client";
 
-import styles from "./login-page.module.scss";
+import "./login-page.scss";
 
 export const LoginPage = () => (
-  <div className={styles.indexPage}>
+  <div className={"indexPage"}>
     <DiscordLoginBtn/>
   </div>
 );
@@ -26,7 +26,7 @@ const DiscordLoginBtn = () => {
   }
 
   return (
-    <div className={styles.discordLoginBtn} onClick={onClick}>
+    <div className={"discordLoginBtn"} onClick={onClick}>
       Login with Discord
     </div>
   );

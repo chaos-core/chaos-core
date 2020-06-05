@@ -5,25 +5,25 @@ import { BrowserRouter as Router } from "react-router-dom";
 import AppRouter from "./app-router.jsx";
 import { AuthService } from "./auth";
 import { AuthGate, LoginRouter } from "./auth/components";
-
-import styles from "./index.module.scss";
-import "./index.scss";
+import { AppLayout } from "./layout";
 import { UserContext } from "./user";
+
+import "./index.scss";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getUser());
 
   return (
-    <div className={styles.app}>
+    <div className={"app"}>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <main>
+        <AppLayout>
           <Router>
             <AuthGate
               loggedOut={<LoginRouter/>}
               loggedIn={<AppRouter/>}
             />
           </Router>
-        </main>
+        </AppLayout>
       </UserContext.Provider>
     </div>
   );
