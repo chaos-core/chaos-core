@@ -1,24 +1,17 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import { GuildsProvider, GuildsList } from "./guilds";
+import { Route, Switch } from "react-router-dom";
 
 const AppRouter = () => {
   return (
     <div>
-      <GuildsProvider>
-        <Switch>
-          <Route path={`/login/callback`}>
-            <Redirect to={"/"}/>
-          </Route>
-          <Route exact path={'/'}>
-            <h1>Guilds</h1>
-            <GuildsList/>
-          </Route>
-          <Route path={'/'}>
-            <div>404: Page not found</div>
-          </Route>
-        </Switch>
-      </GuildsProvider>
+      <Switch>
+        <Route exact path={'/'}>
+          Index
+        </Route>
+        <Route path={'/'}>
+          <div>404: Page not found</div>
+        </Route>
+      </Switch>
     </div>
   );
 };
