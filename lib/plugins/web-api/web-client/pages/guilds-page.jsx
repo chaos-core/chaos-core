@@ -33,7 +33,7 @@ const GuildsPage = () => {
               key={guild.id}
               guild={guild}
               onClick={() => setGuild(guild)}
-              current={guild.id === currentGuild.id}
+              current={currentGuild && guild.id === currentGuild.id}
             />
           ))}
         </div>

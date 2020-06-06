@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import AppRouter from "./app-router.jsx";
+import { UserProvider } from "./user";
+import { GuildProvider } from "./guilds";
 
 import "./index.scss";
-import { UserProvider } from "./user";
-import { AppLayout } from "./layout";
-import { GuildProvider } from "./guilds";
 
 const App = () => {
   return (
     <div className={"app"}>
       <UserProvider>
         <GuildProvider>
-          <AppLayout>
+          <Router>
             <AppRouter/>
-          </AppLayout>
+          </Router>
         </GuildProvider>
       </UserProvider>
     </div>

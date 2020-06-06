@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { Route, Switch, BrowserRouter as Router, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import { UserContext } from "./user";
 import { HomePage, LoginPage } from "./pages";
+import AppLayout from "./layout/app-layout.jsx";
 
 const AppRouter = () => {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <Router>
+    <AppLayout>
       <Switch>
         <Route path={`/login`}>
           {currentUser ? <Redirect to={"/"}/> : <LoginPage/>}
@@ -17,7 +18,7 @@ const AppRouter = () => {
           {currentUser ? <HomePage/> : <Redirect to={"/login"}/>}
         </Route>
       </Switch>
-    </Router>
+    </AppLayout>
   );
 };
 

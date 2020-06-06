@@ -6,7 +6,7 @@ export const GuildContext = React.createContext({
 });
 
 export const GuildProvider = ({ children }) => {
-  const [guild, setGuild] = useState({ name: "Test Guild" });
+  const [guild, setGuild] = useState(null);
   const contextState = { guild, setGuild };
   return <GuildContext.Provider value={contextState} children={children}/>;
 };

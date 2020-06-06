@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import { UserContext, UserAvatar } from "../user";
-
-import GuildIcon from "../guilds/guild-icon.jsx";
-import { GuildContext } from "../guilds";
+import { GuildIcon, GuildContext } from "../guilds";
 
 import "./app-header.scss";
 
@@ -19,20 +18,32 @@ export default AppHeader;
 
 const GuildArea = () => {
   const { guild } = useContext(GuildContext);
-  if (!guild) return null;
-
-  return (
-    <div className={"guildArea"}>
-      <GuildIcon guild={guild}/>
-      <div className={'guildName'}>{guild.name}</div>
-      <SelectGuildBtn/>
-    </div>
-  );
+  if (!guild) {
+    return (
+      <div className={"guildArea"}>
+        <div className={"guildIcon"}/>
+        <div className={'guildName'}>&nbsp;</div>
+        <SelectGuildBtn/>
+      </div>
+    );
+  } else {
+    return (
+      <div className={"guildArea"}>
+        <GuildIcon guild={guild}/>
+        <div className={'guildName'}>{guild.name}</div>
+        <SelectGuildBtn/>
+      </div>
+    );
+  }
 };
 
 const SelectGuildBtn = () => {
+  const history = useHistory();
+
   return (
-    <span className={"selectGuildBtn"}>Select Guild</span>
+    <span className={"selectGuildBtn"} onClick={() => history.push("/guilds")}>
+      Select Guild
+    </span>
   );
 };
 
