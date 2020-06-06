@@ -1,14 +1,14 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import React from "react";
+
+import GuildsPage from "./guilds-page.jsx";
 
 const HomePage = () => {
   return (
     <Switch>
-      <Route exact path={'/'}>
-        Index
-      </Route>
+      <Route path={'/guilds'} component={GuildsPage}/>
       <Route path={'/'}>
-        <div>404: Page not found</div>
+        <Redirect to={"/guilds"}/>
       </Route>
     </Switch>
   );

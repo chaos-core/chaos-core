@@ -1,0 +1,50 @@
+@import "../styles/colours";
+
+.guildsPage {
+  .guildsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .guildCard {
+    display: inline-block;
+    position: relative;
+    top: 0;
+
+    background: $colour-secondary;
+
+    margin: 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.4);
+
+    transition: box-shadow 250ms, top 250ms;
+
+    &.current {
+      background: $colour-accent;
+    }
+
+    &:hover {
+      top: -4px;
+      box-shadow: 0 8px 8px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 200px;
+      height: 200px;
+    }
+
+    .name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 200px;
+      height: 50px;
+    }
+  }
+}

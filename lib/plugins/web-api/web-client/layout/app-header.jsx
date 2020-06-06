@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 
 import { UserContext, UserAvatar } from "../user";
 
-import "./app-header.scss";
 import GuildIcon from "../guilds/guild-icon.jsx";
 import { GuildContext } from "../guilds";
+
+import "./app-header.scss";
 
 const AppHeader = () => {
   return (
