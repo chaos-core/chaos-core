@@ -7,6 +7,9 @@ const HomePage = () => {
   return (
     <Switch>
       <Route path={'/guilds'} component={GuildsPage}/>
+      <Route path={'/plugins'}>
+        Plugin list!
+      </Route>
       <Route path={'/'}>
         <Redirect to={"/guilds"}/>
       </Route>

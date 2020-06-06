@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export const GuildContext = React.createContext({
   guild: null,
-  setGuild: async () => {},
+  setGuild: () => {},
 });
 
 export const GuildProvider = ({ children }) => {

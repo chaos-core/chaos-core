@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import classNames from 'classnames';
 
 import ChaosApiService from "../chaos-api-service.js";
-import GuildIcon from "../guilds/guild-icon.jsx";
+import { GuildIcon, GuildContext } from "../guilds";
 
 import "./guilds-page.scss";
-import { GuildContext } from "../guilds";
 
 const GuildsPage = () => {
   const { guild: currentGuild, setGuild } = useContext(GuildContext);
+  const history = useHistory();
   const [guilds, setGuilds] = useState([]);
   const [fetching, setFetching] = useState(false);
 
@@ -24,19 +25,21 @@ const GuildsPage = () => {
   if (fetching) {
     return <div>Loading...</div>;
   } else {
+    const cardClicked = (guild) => {
+      setGuild(guild);
+      history.push("/plugins");
+    };
+
     return (
       <div className={"guildsPage"}>
-        Select Guild:
-        <div className={"guildsList"}>
-          {guilds.map((guild) => (
-            <GuildCard
-              key={guild.id}
-              guild={guild}
-              onClick={() => setGuild(guild)}
-              current={currentGuild && guild.id === currentGuild.id}
-            />
-          ))}
-        </div>
+        {guilds.map((guild) => (
+          <GuildCard
+            key={guild.id}
+            guild={guild}
+            onClick={() => cardClicked(guild)}
+            current={currentGuild && guild.id === currentGuild.id}
+          />
+        ))}
       </div>
     );
   }
