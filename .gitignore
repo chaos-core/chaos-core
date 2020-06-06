@@ -12,7 +12,7 @@
 /.nyc_output/
 .idea/
 
-lib/plugins/core/build
-lib/plugins/core/web-client/chaos-client.js
-lib/plugins/core/web-server/public/client.bundle.js
+lib/core-plugin/build
+lib/core-plugin/web-client/chaos-client.js
+lib/core-plugin/web-server/public/client.bundle.js
 
