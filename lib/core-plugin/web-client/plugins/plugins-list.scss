@@ -1,0 +1,29 @@
+@import "../styles/colours";
+
+.pluginsList {
+  .pluginCard {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    width: 300px;
+    margin-top: 4px;
+
+    border: 1px solid $colour-secondary;
+    background: $colour-light;
+
+    transition: background 250ms;
+
+    .name {
+      flex-grow: 1;
+    }
+
+    &:hover {
+      background: darken($colour-light, 10%);
+    }
+
+    &.current {
+      background: darken($colour-light, 20%);
+    }
+  }
+}

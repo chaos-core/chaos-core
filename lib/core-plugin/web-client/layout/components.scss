@@ -1,0 +1,58 @@
+@import "../styles/colours";
+
+.card {
+  display: inline-block;
+  background: $colour-light;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.toggle {
+  position: relative;
+  display: block;
+
+  margin: 4px;
+
+  height: 16px;
+  width: 40px;
+
+  border-radius: 12px;
+  background: $colour-dark;
+
+  .switch {
+    position: absolute;
+    top: -4;
+    left: -4;
+    transition: left 250ms, background-color 250ms;
+
+    display: block;
+    height: 24px;
+    width: 24px;
+
+    border-radius: 12px;
+
+    background: $colour-accent;
+  }
+
+  &.active {
+    background: $colour-secondary;
+
+    .switch {
+      left: 20px;
+    }
+  }
+
+  &:not(.disabled) {
+    &:hover .switch {
+      left: 0;
+    }
+
+    &.active:hover .switch {
+      left: 16px
+    }
+  }
+
+  &.disabled .switch {
+    background: lighten($colour-secondary, 30%);
+  }
+}

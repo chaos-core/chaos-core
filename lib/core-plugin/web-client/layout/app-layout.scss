@@ -1,10 +1,8 @@
 @import "../styles/colours";
 
 .appLayout {
-  display: grid;
-  grid-template-areas: 'header header' 'side main';
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr;
+  display: flex;
+  flex-direction: column;
 
   height: calc(100vh - 24px);
   width: calc(100vw - 24px);
@@ -14,8 +12,6 @@
   background-color: rgba($colour-light, .15);
 
   .appHeader {
-    grid-area: header;
-
     border-radius: 8px;
 
     margin: 8px;
@@ -27,15 +23,8 @@
   }
 
   main {
-    grid-area: main;
-
-    border-radius: 8px;
-
+    flex-grow: 1;
     margin: 8px;
-    padding: 8px;
-
-    background-color: $colour-light;
-
     overflow: auto;
   }
 }

@@ -1,0 +1,12 @@
+.pluginsPage {
+  display: flex;
+
+  .pluginsList {
+    margin: 4px;
+  }
+
+  .pluginControls {
+    flex-grow: 1;
+    margin: 4px;
+  }
+}
