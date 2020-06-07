@@ -5,5 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/lib/core-plugin/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="@types/mocha" level="application" />
+    <orderEntry type="library" name="@types/sinon-chai" level="application" />
   </component>
 </module>
