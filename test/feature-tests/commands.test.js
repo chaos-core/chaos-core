@@ -56,7 +56,7 @@ describe('Feature: Commands', function () {
       args: {
         normal: 'value1',
         required: 'value2',
-        optional: null,
+        optional: undefined,
         default: 'value4',
       },
     }));
