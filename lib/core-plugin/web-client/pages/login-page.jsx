@@ -1,11 +1,12 @@
-import queryString from "query-string";
-import React, { useContext, useState, useEffect } from "react";
-import { useLocation, Route, Switch, useRouteMatch } from "react-router-dom";
+import queryString from 'query-string';
+import React, {useContext, useEffect, useState} from 'react';
+import {Route, Switch, useLocation, useRouteMatch} from 'react-router-dom';
 
-import { config } from "../chaos-client.js";
-import { UserContext } from "../user";
+import {config} from '../chaos-client.js';
+import {UserContext} from '../user';
+import {Card, LoadingSpinner} from '../layout/components.jsx';
 
-import "./login-page.scss";
+import './login-page.scss';
 
 function useParam(key) {
   const query = new URLSearchParams(useLocation().search);
@@ -13,7 +14,7 @@ function useParam(key) {
 }
 
 export const LoginPage = () => {
-  const { path } = useRouteMatch();
+  const {path} = useRouteMatch();
 
   return (
     <Switch>
@@ -26,19 +27,19 @@ export const LoginPage = () => {
 const DiscordLoginBtn = () => {
   function onClick() {
     document.location = queryString.stringifyUrl({
-      url: "https://discord.com/api/oauth2/authorize",
+      url: 'https://discord.com/api/oauth2/authorize',
       query: {
-        "client_id": config.clientId,
-        "redirect_uri": config.clientUrl + "/login/callback",
-        "response_type": "code",
-        "scope": "identify guilds",
+        'client_id': config.clientId,
+        'redirect_uri': config.clientUrl + '/login/callback',
+        'response_type': 'code',
+        'scope': 'identify guilds',
         // "prompt": "none",
       },
     });
   }
 
   return (
-    <div className={"discordLoginBtn"} onClick={onClick}>
+    <div className={'discordLoginBtn'} onClick={onClick}>
       Login with Discord
     </div>
   );
@@ -46,16 +47,16 @@ const DiscordLoginBtn = () => {
 
 const IndexPage = () => {
   return (
-    <div className={"indexPage"}>
+    <Card className={'indexPage'}>
       <DiscordLoginBtn/>
-    </div>
+    </Card>
   );
 };
 
 const CallbackPage = () => {
-  const { login } = useContext(UserContext);
-  const code = useParam("code");
-  const [error, setError] = useState(useParam("error") !== null);
+  const {login} = useContext(UserContext);
+  const code = useParam('code');
+  const [error, setError] = useState(useParam('error') !== null);
 
   useEffect(() => {
     if (code) {
@@ -63,12 +64,16 @@ const CallbackPage = () => {
     }
   }, [code]);
 
-  if (!error) return (<div>Logging in...</div>);
+  if (!error) return (
+    <Card className={'indexPage'}>
+      <LoadingSpinner/>
+    </Card>
+  );
 
   return (
-    <div className={"indexPage"}>
+    <Card className={'indexPage'}>
       Hmm... Something went wrong. Try Again?
       <DiscordLoginBtn/>
-    </div>
+    </Card>
   );
 };

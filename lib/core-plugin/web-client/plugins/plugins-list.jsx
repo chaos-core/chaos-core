@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import ChaosApiService from '../chaos-api-service.js';
 import {GuildContext} from '../guilds';
-import {Card, Toggle} from '../layout/components.jsx';
+import {Card, LoadingSpinner, Toggle} from '../layout/components.jsx';
 
 import './plugins-list.scss';
 
@@ -22,7 +22,11 @@ const PluginsList = () => {
     })();
   }, [guild]);
 
-  if (fetching) return <div>Loading...</div>;
+  if (fetching) return (
+    <Card className={'pluginsList'}>
+      <LoadingSpinner/>
+    </Card>
+  );
 
   return (
     <Card className={'pluginsList'}>

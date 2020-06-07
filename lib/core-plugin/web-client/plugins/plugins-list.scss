@@ -1,13 +1,15 @@
 @import "../styles/colours";
 
 .pluginsList {
+  padding: 0;
+
   .pluginCard {
     position: relative;
     display: flex;
     align-items: center;
 
     width: 300px;
-    margin-top: 4px;
+    margin: 8px;
 
     border: 1px solid $colour-secondary;
     background: $colour-light;

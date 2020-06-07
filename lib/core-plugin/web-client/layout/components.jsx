@@ -3,6 +3,8 @@ import classNames from 'classnames';
 
 import './components.scss';
 
+export LoadingSpinner from './loading-spinner.jsx';
+
 export const Card = ({className = null, onClick = null, children}) => {
   const divClass = classNames(['card', className]);
   return <div className={divClass} onClick={onClick} children={children}/>;

@@ -1,0 +1,83 @@
+@import "../styles/colours";
+
+.loadingSpinner {
+  display: inline-block;
+  position: relative;
+
+  $bar-count: 6;
+  $bar-width: 24px;
+  $bar-margin: 4px;
+
+  height: 46px;
+  width: 14px + ($bar-width + $bar-margin) * $bar-count;
+  margin: 8px;
+  overflow: hidden;
+  background-color: $colour-light;
+  border: 1px solid $colour-secondary;
+  border-radius: 8px;
+
+  & > .bar {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+
+    border-radius: 8px;
+    width: $bar-width;
+    height: 12px;
+
+    display: block;
+  }
+
+  .bar.hidden {
+    display: none;
+  }
+
+  @for $i from 1 through $bar-count {
+    .bar:nth-child(#{$i}) {
+      animation: slide 6s infinite ease-in-out;
+      animation-delay: (-1s * ($i - 1));
+      background-color: $colour-accent;
+    }
+  }
+
+  $num-frames: 8;
+  $time-per-frame: 100% / $num-frames;
+
+  @keyframes slide {
+    0%, 100% {
+      top: calc(100% - 20px);
+      left: 8px;
+    }
+    5% {
+      width: $bar-width;
+      left: 8px;
+      top: 8px;
+    }
+    10% {
+      width: calc(100% - 16px);
+      top: 8px;
+      left: 8px;
+    }
+    15% {
+      width: $bar-width;
+      top: 8px;
+      left: calc(100% - 8px - #{$bar-width});
+    }
+    20% {
+      top: calc(100% - 20px);
+      left: 8px + ((4px + $bar-width) * 5);
+    }
+    36% {
+      left: 8px + ((4px + $bar-width) * 4);
+    }
+    52% {
+      left: 8px + ((4px + $bar-width) * 3);
+    }
+    68% {
+      left: 8px + ((4px + $bar-width) * 2);
+    }
+    84% {
+      left: 8px + ((4px + $bar-width) * 1);
+    }
+  }
+}

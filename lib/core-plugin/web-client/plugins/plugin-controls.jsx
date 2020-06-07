@@ -1,11 +1,12 @@
 import React from 'react';
 
-import {Card} from '../layout/components.jsx';
+import {Card, LoadingSpinner} from '../layout/components.jsx';
 
 const PluginControls = () => {
   return (
     <Card className={'pluginControls'}>
       Options for plugin!
+      <LoadingSpinner/>
     </Card>
   );
 };

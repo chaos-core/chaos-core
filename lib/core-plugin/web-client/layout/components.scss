@@ -47,8 +47,16 @@
       left: 0;
     }
 
+    &:active .switch {
+      left: 4px
+    }
+
     &.active:hover .switch {
       left: 16px
+    }
+
+    &.active:active .switch {
+      left: 12px
     }
   }
 
