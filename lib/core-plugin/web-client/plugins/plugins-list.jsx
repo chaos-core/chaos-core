@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import ChaosApiService from '../chaos-api-service.js';
 import {GuildContext} from '../guilds';
-import {Card, LoadingSpinner, Toggle} from '../layout/components.jsx';
+import {Card, LoadingSpinner, Toggle} from '../layout/components';
 
 import './plugins-list.scss';
 

@@ -4,7 +4,7 @@ import {Route, Switch, useLocation, useRouteMatch} from 'react-router-dom';
 
 import {config} from '../chaos-client.js';
 import {UserContext} from '../user';
-import {Card, LoadingSpinner} from '../layout/components.jsx';
+import {Card, LoadingSpinner} from '../layout/components';
 
 import './login-page.scss';
 

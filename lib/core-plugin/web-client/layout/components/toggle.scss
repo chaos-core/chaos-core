@@ -1,13 +1,6 @@
-@import "../styles/colours";
+@import "../../styles/colours";
 
-.card {
-  display: inline-block;
-  background: $colour-light;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.toggle {
+.chaos-toggle {
   position: relative;
   display: block;
 

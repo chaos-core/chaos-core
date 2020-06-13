@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Card, LoadingSpinner} from '../layout/components.jsx';
+import {Card, LoadingSpinner} from '../layout/components';
 
 const PluginControls = () => {
   return (
