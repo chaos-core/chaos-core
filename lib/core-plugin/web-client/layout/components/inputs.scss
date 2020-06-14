@@ -1,0 +1,27 @@
+@import "../../styles/colours";
+
+.chaos-text-input {
+  display: block;
+  width: 100%;
+  outline: none;
+
+  background: $colour-dark;
+  padding: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  border: 1px solid $colour-dark;
+  border-radius: 4px;
+
+  color: $colour-light;
+
+  &::placeholder {
+    color: $colour-light;
+  }
+
+  &:focus {
+    background: $colour-light;
+    color: $colour-dark;
+    border: 1px solid $colour-accent;
+  }
+}

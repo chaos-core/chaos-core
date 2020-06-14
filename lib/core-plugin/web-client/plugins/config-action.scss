@@ -1,8 +1,24 @@
+@import "../styles/colours";
+
 .chaos-config-action {
   display: block;
   margin: 4px;
 
+  .name {
+    background: $colour-accent;
+    padding: 8px;
+    margin: -8px -8px 4px -8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
   .description {
     font-size: small;
+  }
+
+  .arg {
+    .description {
+      font-size: small;
+    }
   }
 }
