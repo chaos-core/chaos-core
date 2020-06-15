@@ -1,6 +1,10 @@
 @import "../styles/colours";
 
 .appLayout {
+  &.MuiPaper-root {
+    background-color: rgba($colour-light, .15);
+  }
+
   display: flex;
   flex-direction: column;
 
@@ -8,8 +12,6 @@
   width: calc(100vw - 24px);
 
   border-radius: 8px;
-
-  background-color: rgba($colour-light, .15);
 
   .appHeader {
     border-radius: 8px;

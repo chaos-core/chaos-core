@@ -1,19 +1,21 @@
-import React, { useContext } from "react";
-import AppHeader from "./app-header.jsx";
+import React, {useContext} from 'react';
+import Paper from '@material-ui/core/Paper';
 
-import "./app-layout.scss";
-import { UserContext } from "../user";
+import {UserContext} from '../user';
+import AppHeader from './app-header.jsx';
 
-const AppLayout = ({ children }) => {
-  const { currentUser } = useContext(UserContext);
+import './app-layout.scss';
+
+const AppLayout = ({children}) => {
+  const {currentUser} = useContext(UserContext);
 
   return (
-    <div className={"appLayout"}>
+    <Paper className={'appLayout'}>
       {currentUser ? <AppHeader/> : null}
       <main>
         {children}
       </main>
-    </div>
+    </Paper>
   );
 };
 

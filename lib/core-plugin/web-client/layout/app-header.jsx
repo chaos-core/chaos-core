@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React, {useContext} from 'react';
+import {useHistory} from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
 
-import { UserContext, UserAvatar } from "../user";
-import { GuildIcon, GuildContext } from "../guilds";
+import {UserAvatar, UserContext} from '../user';
+import {GuildContext, GuildIcon} from '../guilds';
 
-import "./app-header.scss";
+import './app-header.scss';
 
 const AppHeader = () => {
   return (
-    <div className={"appHeader"}>
+    <Paper className={'appHeader'}>
       <GuildArea/>
       <UserArea/>
-    </div>
+    </Paper>
   );
 };
 export default AppHeader;

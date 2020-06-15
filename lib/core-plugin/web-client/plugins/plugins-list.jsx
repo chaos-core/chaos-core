@@ -1,9 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
 import classNames from 'classnames';
+import Switch from '@material-ui/core/Switch';
+import Paper from '@material-ui/core/Paper';
 
 import ChaosApiService from '../chaos-api-service.js';
 import {GuildContext} from '../guilds';
-import {Card, LoadingSpinner, Toggle} from '../layout/components';
+import {LoadingSpinner} from '../layout/components';
 
 import './plugins-list.scss';
 
@@ -23,15 +25,15 @@ const PluginsList = () => {
   }, [guild]);
 
   if (fetching) return (
-    <Card className={'pluginsList'}>
+    <div className={'pluginsList'}>
       <LoadingSpinner/>
-    </Card>
+    </div>
   );
 
   return (
-    <Card className={'pluginsList'}>
+    <div className={'pluginsList'}>
       {plugins.map((plugin) => <PluginCard key={plugin.name} plugin={plugin}/>)}
-    </Card>
+    </div>
   );
 };
 
@@ -46,10 +48,15 @@ const PluginCard = ({plugin}) => {
     current: current,
   });
 
+  const onSwitchClick = (e) => {
+    e.stopPropagation();
+    setEnabled(!enabled);
+  };
+
   return (
-    <Card className={classes} onClick={() => setCurrent(!current)}>
+    <Paper className={classes} onClick={() => setCurrent(!current)}>
       <div className={'name'}>{plugin.name}</div>
-      <Toggle active={enabled} onClick={() => setEnabled(!enabled)} disabled={plugin.name === 'core'}/>
-    </Card>
+      <Switch checked={enabled} onClick={onSwitchClick} disabled={plugin.name === 'core'}/>
+    </Paper>
   );
 };

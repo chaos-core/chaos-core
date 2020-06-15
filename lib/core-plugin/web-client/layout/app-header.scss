@@ -2,7 +2,10 @@
 @import "../styles/fonts";
 
 .appHeader {
-  background: $colour-primary;
+  &.MuiPaper-root {
+    background: $colour-primary;
+  }
+
   display: flex;
 
   .guildArea,

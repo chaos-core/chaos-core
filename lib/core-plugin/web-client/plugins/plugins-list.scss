@@ -7,9 +7,18 @@
     position: relative;
     display: flex;
     align-items: center;
+    padding-left: 8px;
 
     width: 300px;
-    margin: 8px;
+    margin: 4px 4px 4px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     border: 1px solid $colour-secondary;
     background: $colour-light;
@@ -25,7 +34,7 @@
     }
 
     &.current {
-      background: darken($colour-light, 20%);
+      background: $colour-primary;
     }
   }
 }

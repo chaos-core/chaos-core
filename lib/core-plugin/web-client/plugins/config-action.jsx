@@ -1,15 +1,16 @@
 import React from 'react';
-import {Card, TextInput} from '../layout/components';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 
 import './config-action.scss';
 
 const ConfigAction = ({action}) => {
   return (
-    <Card className={'chaos-config-action'}>
+    <Paper className={'chaos-config-action'}>
       <div className={'name'}>{action.name}</div>
       <div className={'description'}>{action.description}</div>
       {action.args.map((arg) => <ArgInput key={arg.name} arg={arg}/>)}
-    </Card>
+    </Paper>
   );
 };
 
@@ -18,8 +19,7 @@ export default ConfigAction;
 const ArgInput = ({arg}) => {
   return (
     <div className={'arg'}>
-      <TextInput placeholder={arg.name}/>
-      <div className={'description'}>{arg.description}</div>
+      <TextField id="standard-basic" label={arg.name} helperText={arg.description}/>
     </div>
   );
 };

@@ -3,13 +3,22 @@
 .chaos-config-action {
   display: block;
   margin: 4px;
+  padding: 4px;
+  overflow: hidden;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   .name {
     background: $colour-accent;
-    padding: 8px;
-    margin: -8px -8px 4px -8px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    padding: 4px;
+    margin: -4px;
+    margin-bottom: 4px;
   }
 
   .description {

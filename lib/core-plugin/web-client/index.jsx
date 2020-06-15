@@ -1,25 +1,29 @@
 import React from 'react';
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {ThemeProvider} from '@material-ui/core/styles';
 
-import AppRouter from "./app-router.jsx";
-import { UserProvider } from "./user";
-import { GuildProvider } from "./guilds";
+import appTheme from './app-theme.js';
+import AppRouter from './app-router.jsx';
+import {UserProvider} from './user';
+import {GuildProvider} from './guilds';
 
-import "./index.scss";
+import './index.scss';
 
 const App = () => {
   return (
-    <div className={"app"}>
-      <UserProvider>
-        <GuildProvider>
-          <Router>
-            <AppRouter/>
-          </Router>
-        </GuildProvider>
-      </UserProvider>
-    </div>
+    <ThemeProvider theme={appTheme}>
+      <div className={'app'}>
+        <UserProvider>
+          <GuildProvider>
+            <Router>
+              <AppRouter/>
+            </Router>
+          </GuildProvider>
+        </UserProvider>
+      </div>
+    </ThemeProvider>
   );
 };
 
-ReactDOM.render(<App/>, document.getElementById("app"));
+ReactDOM.render(<App/>, document.getElementById('app'));

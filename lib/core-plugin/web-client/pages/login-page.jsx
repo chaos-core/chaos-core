@@ -4,9 +4,10 @@ import {Route, Switch, useLocation, useRouteMatch} from 'react-router-dom';
 
 import {config} from '../chaos-client.js';
 import {UserContext} from '../user';
-import {Card, LoadingSpinner} from '../layout/components';
+import {LoadingSpinner} from '../layout/components';
 
 import './login-page.scss';
+import Paper from '@material-ui/core/Paper';
 
 function useParam(key) {
   const query = new URLSearchParams(useLocation().search);
@@ -65,15 +66,15 @@ const CallbackPage = () => {
   }, [code]);
 
   if (!error) return (
-    <Card className={'indexPage'}>
+    <Paper className={'indexPage'}>
       <LoadingSpinner/>
-    </Card>
+    </Paper>
   );
 
   return (
-    <Card className={'indexPage'}>
+    <Paper className={'indexPage'}>
       Hmm... Something went wrong. Try Again?
       <DiscordLoginBtn/>
-    </Card>
+    </Paper>
   );
 };
