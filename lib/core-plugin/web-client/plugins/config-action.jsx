@@ -10,6 +10,7 @@ import {PluginContext} from './plugins-context.jsx';
 import {GuildContext} from '../guilds';
 
 import './config-action.scss';
+import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
 
 const ConfigAction = ({action}) => {
   const {guild} = useContext(GuildContext);
@@ -17,13 +18,15 @@ const ConfigAction = ({action}) => {
 
   const [expanded, setExpanded] = useState(false);
   const [argInputs, setInputs] = useState({});
+  const [fetching, setFetching] = useState(false);
+  const [response, setResponse] = useState(null);
 
-  const onSend = () => {
-    ChaosApiService.plugin(plugin.name).runAction(
-      action.name,
-      guild.id,
-      argInputs,
-    );
+  const onSend = async () => {
+    setFetching(true);
+    const response = await ChaosApiService.plugin(plugin.name)
+      .runAction(action.name, guild.id, argInputs);
+    setResponse(response);
+    setFetching(false);
   };
 
   return (
@@ -34,21 +37,27 @@ const ConfigAction = ({action}) => {
           <div className={'description'}>{action.description}</div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <div className={'args'}>
-            {action.args.map((arg) => (
-              <ArgInput
-                key={arg.name}
-                arg={arg}
-                value={argInputs[arg.name] || ''}
-                onChange={(event) => setInputs({
-                  ...argInputs,
-                  [arg.name]: event.target.value,
-                })}
-              />
-            ))}
-          </div>
-          <div className={'actions'}>
-            <Button variant="outlined" color="default" onClick={onSend}>Send</Button>
+          <div>
+            <div className={'args'}>
+              {action.args.map((arg) => (
+                <ArgInput
+                  key={arg.name}
+                  arg={arg}
+                  value={argInputs[arg.name] || ''}
+                  onChange={(event) => setInputs({
+                    ...argInputs,
+                    [arg.name]: event.target.value,
+                  })}
+                />
+              ))}
+            </div>
+            <div className={'actions'}>
+              <Button variant="outlined" color="default" onClick={onSend}>Send</Button>
+            </div>
+            <div className={'response'}>
+              {fetching && (<LoadingSpinner/>)}
+              {response && (<div>{response.content}</div>)}
+            </div>
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
