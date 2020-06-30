@@ -5,10 +5,10 @@ import Paper from '@material-ui/core/Paper';
 
 import ChaosApiClient from '../chaos-api-client.js';
 import {GuildContext} from '../guilds';
+import {PluginContext} from './plugins-context.jsx';
 import {LoadingSpinner} from '../layout/components';
 
 import './plugins-list.scss';
-import {PluginContext} from './plugins-context.jsx';
 
 const PluginsList = () => {
   const {guild} = useContext(GuildContext);
@@ -42,6 +42,7 @@ export default PluginsList;
 
 const PluginCard = ({plugin}) => {
   const [enabled, setEnabled] = useState(plugin.enabled);
+  const {guild} = useContext(GuildContext);
   const pluginContext = useContext(PluginContext);
 
   const classes = classNames({
@@ -49,9 +50,9 @@ const PluginCard = ({plugin}) => {
     current: pluginContext.plugin && plugin.name === pluginContext.plugin.name,
   });
 
-  const onSwitchClick = (e) => {
+  const onSwitchClick = async (e) => {
     e.stopPropagation();
-    setEnabled(!enabled);
+    setEnabled(await ChaosApiClient.plugin(plugin.name).setEnabled(guild.id, !enabled));
   };
 
   return (
