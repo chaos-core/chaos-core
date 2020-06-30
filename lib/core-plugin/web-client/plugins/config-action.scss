@@ -16,18 +16,25 @@
 
   .name {
     background: $colour-accent;
-    padding: 4px;
+    padding: 8px;
     margin: -4px;
     margin-bottom: 4px;
   }
 
   .description {
+    padding: 4px;
     font-size: small;
   }
 
   .arg {
+    margin: 4px;
+
     .description {
       font-size: small;
     }
+  }
+
+  .actions {
+    margin: 4px;
   }
 }
