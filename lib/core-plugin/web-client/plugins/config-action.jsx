@@ -6,7 +6,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Card from '@material-ui/core/Card';
 
-import ChaosApiClient from '../chaos-api-client.js';
+import {CoreApiClient} from '../chaos-api-client.js';
 import LoadingSpinner from '../layout/components/loading-spinner.jsx';
 import {PluginContext} from '../plugins/plugins-context.jsx';
 import {GuildContext} from '../guilds';
@@ -24,8 +24,12 @@ const ConfigAction = ({action}) => {
 
   const onSend = async () => {
     setFetching(true);
-    const response = await ChaosApiClient.plugin(plugin.name)
-      .runAction(action.name, guild.id, argInputs);
+    const response = await CoreApiClient.runConfigAction({
+      guildId: guild.id,
+      pluginName: plugin.name,
+      actionName: action.name,
+      args: argInputs,
+    });
     setResponse(response);
     setFetching(false);
   };

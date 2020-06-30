@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 
-import ChaosApiClient from '../chaos-api-client.js';
+import {CoreApiClient} from '../chaos-api-client.js';
 import {GuildContext} from '../guilds';
 import {PluginContext} from './plugins-context.jsx';
 import {LoadingSpinner} from '../layout/components';
@@ -19,7 +19,9 @@ const PluginsList = () => {
     (async () => {
       if (!guild) return;
       setFetching(true);
-      const plugins = await ChaosApiClient.guild(guild.id).getPlugins();
+      const plugins = await CoreApiClient.getGuildPlugins({
+        guildId: guild.id,
+      });
       setPlugins(Object.values(plugins));
       setFetching(false);
     })();
@@ -54,7 +56,11 @@ const PluginCard = ({plugin}) => {
     e.stopPropagation();
     const newState = !enabled;
     setEnabled(newState); // Optimistically set the new state
-    setEnabled(await ChaosApiClient.plugin(plugin.name).setEnabled(guild.id, newState));
+    setEnabled(await CoreApiClient.setPluginEnabled({
+      guildId: guild.id,
+      pluginName: plugin.name,
+      enabled: newState,
+    }));
   };
 
   return (

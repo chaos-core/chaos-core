@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 
 import {LoadingSpinner} from '../layout/components';
 import ConfigAction from './config-action.jsx';
-import ChaosApiClient from '../chaos-api-client.js';
+import {CoreApiClient} from '../chaos-api-client.js';
 import {PluginContext} from './plugins-context.jsx';
 import {pluginApps} from '../chaos-client.js';
 
@@ -39,8 +39,7 @@ const ActionList = ({pluginName}) => {
 
   useEffect(() => {
     setFetching(true);
-    ChaosApiClient.plugin(pluginName)
-      .getActions()
+    CoreApiClient.getPluginActions({pluginName})
       .then(setActions)
       .then(() => setFetching(false))
     ;

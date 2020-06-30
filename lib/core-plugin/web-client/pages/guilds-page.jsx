@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import classNames from 'classnames';
 
-import ChaosApiClient from '../chaos-api-client.js';
+import {CoreApiClient} from '../chaos-api-client.js';
 import {GuildContext, GuildIcon} from '../guilds';
 
 import './guilds-page.scss';
@@ -16,7 +16,7 @@ const GuildsPage = () => {
   useEffect(() => {
     (async () => {
       setFetching(true);
-      const guilds = await ChaosApiClient.guilds.get();
+      const guilds = await CoreApiClient.getGuilds();
       setGuilds(Object.values(guilds));
       setFetching(false);
     })();
