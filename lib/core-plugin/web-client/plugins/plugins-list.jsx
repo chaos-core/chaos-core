@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 
-import ChaosApiService from '../chaos-api-service.js';
+import ChaosApiClient from '../chaos-api-client.js';
 import {GuildContext} from '../guilds';
 import {LoadingSpinner} from '../layout/components';
 
@@ -19,7 +19,7 @@ const PluginsList = () => {
     (async () => {
       if (!guild) return;
       setFetching(true);
-      const plugins = await ChaosApiService.guild(guild.id).getPlugins();
+      const plugins = await ChaosApiClient.guild(guild.id).getPlugins();
       setPlugins(Object.values(plugins));
       setFetching(false);
     })();

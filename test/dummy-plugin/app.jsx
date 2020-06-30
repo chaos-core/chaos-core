@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 // noinspection JSFileReferences
-import ChaosApiService from 'chaos-core/chaos-api-service.js';
+import ChaosApiClient from 'chaos-core/chaos-api-client.js';
 import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
   useEffect(() => {
     (async () => {
       setFetching(true);
-      const guilds = await ChaosApiService.guilds.get();
+      const guilds = await ChaosApiClient.guilds.get();
       setGuilds(Object.values(guilds));
       setFetching(false);
     })();

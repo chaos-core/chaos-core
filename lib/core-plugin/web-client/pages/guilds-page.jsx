@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React, {useContext, useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import classNames from 'classnames';
 
-import ChaosApiService from "../chaos-api-service.js";
-import { GuildIcon, GuildContext } from "../guilds";
+import ChaosApiClient from '../chaos-api-client.js';
+import {GuildContext, GuildIcon} from '../guilds';
 
-import "./guilds-page.scss";
+import './guilds-page.scss';
 
 const GuildsPage = () => {
-  const { guild: currentGuild, setGuild } = useContext(GuildContext);
+  const {guild: currentGuild, setGuild} = useContext(GuildContext);
   const history = useHistory();
   const [guilds, setGuilds] = useState([]);
   const [fetching, setFetching] = useState(false);
@@ -16,7 +16,7 @@ const GuildsPage = () => {
   useEffect(() => {
     (async () => {
       setFetching(true);
-      const guilds = await ChaosApiService.guilds.get();
+      const guilds = await ChaosApiClient.guilds.get();
       setGuilds(Object.values(guilds));
       setFetching(false);
     })();
