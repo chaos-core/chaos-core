@@ -1,40 +1,34 @@
 @import "../styles/colours";
 
 .chaos-config-action {
-  display: block;
   margin: 4px;
-  padding: 4px;
-  overflow: hidden;
 
-  &:first-child {
-    margin-top: 0;
+  .MuiCollapse-container {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
   }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  .name {
-    background: $colour-accent;
-    padding: 8px;
-    margin: -4px;
-    margin-bottom: 4px;
+  .MuiExpansionPanelSummary-content {
+    display: block;
   }
 
   .description {
-    padding: 4px;
     font-size: small;
   }
 
-  .arg {
-    margin: 4px;
+  .MuiExpansionPanelDetails-root {
+    display: block;
+  }
 
-    .description {
-      font-size: small;
+  .args {
+    display: flex;
+
+    .arg {
+      flex: 1;
+      margin: 4px;
     }
   }
 
   .actions {
-    margin: 4px;
+    margin-top: 4px;
   }
 }
