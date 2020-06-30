@@ -8,6 +8,7 @@ import {LoadingSpinner} from '../layout/components';
 
 import './login-page.scss';
 import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
 
 function useParam(key) {
   const query = new URLSearchParams(useLocation().search);
@@ -46,7 +47,7 @@ const DiscordLoginBtn = () => {
   );
 };
 
-const IndexPage = () => {
+export const IndexPage = () => {
   return (
     <Card className={'indexPage'}>
       <DiscordLoginBtn/>
@@ -54,7 +55,7 @@ const IndexPage = () => {
   );
 };
 
-const CallbackPage = () => {
+export const CallbackPage = () => {
   const {login} = useContext(UserContext);
   const code = useParam('code');
   const [error, setError] = useState(useParam('error') !== null);

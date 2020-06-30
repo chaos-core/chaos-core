@@ -8,6 +8,7 @@ import {GuildContext} from '../guilds';
 import {LoadingSpinner} from '../layout/components';
 
 import './plugins-list.scss';
+import {PluginContext} from './plugins-context.jsx';
 
 const PluginsList = () => {
   const {guild} = useContext(GuildContext);
@@ -41,11 +42,11 @@ export default PluginsList;
 
 const PluginCard = ({plugin}) => {
   const [enabled, setEnabled] = useState(plugin.enabled);
-  const [current, setCurrent] = useState(false);
+  const pluginContext = useContext(PluginContext);
 
   const classes = classNames({
     pluginCard: true,
-    current: current,
+    current: pluginContext.plugin && plugin.name === pluginContext.plugin.name,
   });
 
   const onSwitchClick = (e) => {
@@ -54,7 +55,7 @@ const PluginCard = ({plugin}) => {
   };
 
   return (
-    <Paper className={classes} onClick={() => setCurrent(!current)}>
+    <Paper className={classes} onClick={() => pluginContext.setCurrent(plugin)}>
       <div className={'name'}>{plugin.name}</div>
       <Switch checked={enabled} onClick={onSwitchClick} disabled={plugin.name === 'core'}/>
     </Paper>

@@ -5,6 +5,7 @@ import {PluginControls, PluginsList} from '../plugins';
 import {GuildContext} from '../guilds';
 
 import './plugins-page.scss';
+import {PluginProvider} from '../plugins/plugins-context.jsx';
 
 const PluginsPage = () => {
   const {guild} = useContext(GuildContext);
@@ -13,8 +14,10 @@ const PluginsPage = () => {
 
   return (
     <div className={'pluginsPage'}>
-      <PluginsList/>
-      <PluginControls/>
+      <PluginProvider>
+        <PluginsList/>
+        <PluginControls/>
+      </PluginProvider>
     </div>
   );
 };
