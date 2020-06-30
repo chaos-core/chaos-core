@@ -52,7 +52,9 @@ const PluginCard = ({plugin}) => {
 
   const onSwitchClick = async (e) => {
     e.stopPropagation();
-    setEnabled(await ChaosApiClient.plugin(plugin.name).setEnabled(guild.id, !enabled));
+    const newState = !enabled;
+    setEnabled(newState); // Optimistically set the new state
+    setEnabled(await ChaosApiClient.plugin(plugin.name).setEnabled(guild.id, newState));
   };
 
   return (
