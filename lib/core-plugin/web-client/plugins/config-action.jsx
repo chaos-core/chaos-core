@@ -4,13 +4,14 @@ import Button from '@material-ui/core/Button';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Card from '@material-ui/core/Card';
 
 import ChaosApiService from '../chaos-api-service.js';
-import {PluginContext} from './plugins-context.jsx';
+import LoadingSpinner from '../layout/components/loading-spinner.jsx';
+import {PluginContext} from '../plugins/plugins-context.jsx';
 import {GuildContext} from '../guilds';
 
 import './config-action.scss';
-import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
 
 const ConfigAction = ({action}) => {
   const {guild} = useContext(GuildContext);
@@ -56,7 +57,7 @@ const ConfigAction = ({action}) => {
             </div>
             <div className={'response'}>
               {fetching && (<LoadingSpinner/>)}
-              {response && (<div>{response.content}</div>)}
+              {response && (<ActionResponse response={response}/>)}
             </div>
           </div>
         </ExpansionPanelDetails>
@@ -80,5 +81,27 @@ const ArgInput = ({arg, value, onChange}) => {
     <div className={'arg'}>
       <TextField id="standard-basic" fullWidth label={label} helperText={helperText} value={value} onChange={onChange}/>
     </div>
+  );
+};
+
+const ActionResponse = ({response}) => {
+  return (
+    <div className={'action-response'}>
+      {response.content && (<div className={'content'}>{response.content}</div>)}
+      {response.embed && (<ResponseEmbed embed={response.embed}/>)}
+    </div>
+  );
+};
+
+const ResponseEmbed = ({embed}) => {
+  return (
+    <Card variant="outlined" className={'embed'}>
+      {embed.fields.map((field) => (
+        <div key={field.name} className={'field'}>
+          <div className={'name'}>{field.name}</div>
+          <pre className={'value'}>{field.value}</pre>
+        </div>
+      ))}
+    </Card>
   );
 };
