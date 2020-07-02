@@ -1,0 +1,49 @@
+@import "../styles/colours";
+
+.chaos-config-action {
+  margin: 4px;
+
+  .MuiCollapse-container {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .MuiExpansionPanelSummary-content {
+    display: block;
+  }
+
+  .description {
+    font-size: small;
+  }
+
+  .MuiExpansionPanelDetails-root {
+    display: block;
+  }
+
+  .args {
+    display: flex;
+
+    .arg {
+      flex: 1;
+      margin: 4px;
+    }
+  }
+
+  .actions {
+    margin-top: 4px;
+  }
+}
+
+.action-response {
+  margin-top: 4px;
+
+  .embed {
+    margin-top: 4px;
+    padding: 4px;
+
+    .field {
+      .name {
+        font-weight: bold
+      }
+    }
+  }
+}

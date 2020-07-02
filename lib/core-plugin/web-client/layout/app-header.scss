@@ -1,0 +1,55 @@
+@import "../styles/colours";
+@import "../styles/fonts";
+
+.appHeader {
+  &.MuiPaper-root {
+    background: $colour-primary;
+  }
+
+  display: flex;
+
+  .guildArea,
+  .userArea {
+    flex-grow: 1;
+
+    .guildName,
+    .userTag {
+      display: block;
+      font-family: $font-display;
+      font-size: 20px;
+    }
+
+    .logoutBtn,
+    .selectGuildBtn {
+      cursor: pointer;
+      color: $colour-light;
+      font-size: 12px;
+
+      margin: -4px;
+      padding: 4px;
+      border-radius: 4px;
+
+      &:hover {
+        background: $colour-accent;
+      }
+    }
+  }
+
+  .guildArea {
+    text-align: left;
+
+    .guildIcon {
+      margin-right: 8px;
+      float: left;
+    }
+  }
+
+  .userArea {
+    text-align: right;
+
+    .userAvatar {
+      margin-left: 8px;
+      float: right;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import "../styles/colours";
+
+.pluginsList {
+  padding: 0;
+
+  .pluginCard {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+
+    width: 300px;
+    margin: 4px 4px 4px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    background: $colour-light;
+
+    transition: background 250ms;
+
+    .name {
+      flex-grow: 1;
+    }
+
+    &:hover {
+      background: darken($colour-light, 10%);
+    }
+
+    &.current {
+      background: $colour-primary;
+    }
+  }
+}

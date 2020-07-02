@@ -1,0 +1,10 @@
+.pluginsPage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .pluginControls {
+    flex-grow: 1;
+    overflow: auto;
+  }
+}

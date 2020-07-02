@@ -1,0 +1,19 @@
+@import "../styles/colours";
+
+.userAvatar {
+  border: 2px solid $colour-dark;
+  border-radius: 8px;
+
+  width: 48px;
+  height: 48px;
+
+  &.small {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.large {
+    width: 64px;
+    height: 64px;
+  }
+}
