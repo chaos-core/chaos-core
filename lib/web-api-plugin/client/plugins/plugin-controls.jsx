@@ -1,9 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
 
-import {LoadingSpinner} from '../layout/components';
+import {LoadingSpinner, PluginContext} from 'chaos-core';
 import ConfigAction from './config-action.jsx';
 import {CoreApiClient} from '../chaos-api-client.js';
-import {PluginContext} from './plugins-context.jsx';
 import {pluginApps} from '../chaos-client.js';
 
 export const getPluginApp = (pluginName) => {

@@ -1,13 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
-import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
-import {CoreApiClient} from 'chaos-core/chaos-api-client.js';
-import {GuildContext} from 'chaos-core/guilds';
 import Card from '@material-ui/core/Card';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
+
+import { LoadingSpinner, GuildContext} from 'chaos-core';
+import {CoreApiClient} from 'chaos-core/chaos-api-client.js';
 
 const PrefixSettings = () => {
   const {guild} = useContext(GuildContext);

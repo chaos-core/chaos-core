@@ -3,10 +3,8 @@ import classNames from 'classnames';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 
+import {GuildContext, LoadingSpinner, PluginContext} from 'chaos-core';
 import {CoreApiClient} from '../chaos-api-client.js';
-import {GuildContext} from '../guilds';
-import {PluginContext} from './plugins-context.jsx';
-import {LoadingSpinner} from '../layout/components';
 
 import './plugins-list.scss';
 

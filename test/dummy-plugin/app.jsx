@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-// noinspection JSFileReferences
+
 import {CoreApiClient} from 'chaos-core/chaos-api-client.js';
-import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
+import {LoadingSpinner} from 'chaos-core';
 
 const App = () => {
   const [guilds, setGuilds] = useState([]);

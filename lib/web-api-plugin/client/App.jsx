@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {ThemeProvider} from '@material-ui/core/styles';
 
-import {ChaosApiClient} from './chaos-api-client.js';
+import {ChaosApiClient, UserProvider, GuildProvider} from './index.js';
 import appTheme from './app-theme.js';
 import AppRouter from './app-router.jsx';
-import {UserProvider} from './user';
-import {GuildProvider} from './guilds';
 
-import './index.scss';
+import './App.scss';
 
 const App = () => {
   useEffect(() => {

@@ -3,8 +3,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Route, Switch, useLocation, useRouteMatch} from 'react-router-dom';
 
 import {config} from '../chaos-client.js';
-import {UserContext} from '../user';
-import {LoadingSpinner} from '../layout/components';
+import {LoadingSpinner, UserContext} from 'chaos-core';
 
 import './login-page.scss';
 import Paper from '@material-ui/core/Paper';
