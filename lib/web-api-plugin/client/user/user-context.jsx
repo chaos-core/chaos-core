@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import UserService from "./user-service.js";
+import React, {useState} from 'react';
+import UserService from './user-service.js';
 
 export const UserContext = React.createContext({
   currentUser: null,
@@ -7,7 +7,7 @@ export const UserContext = React.createContext({
   logout: async () => {},
 });
 
-export const UserProvider = ({ children }) => {
+export const UserProvider = ({children}) => {
   const [currentUser, setCurrentUser] = useState(UserService.getUser());
 
   const login = async (code) => {
@@ -20,6 +20,6 @@ export const UserProvider = ({ children }) => {
     setCurrentUser(UserService.getUser());
   };
 
-  const contextState = { currentUser, login, logout };
-  return <UserContext.Provider value={contextState} children={children}/>;
+  const contextState = {currentUser, login, logout};
+  return <UserContext.Provider value={contextState}>{children}</UserContext.Provider>;
 };

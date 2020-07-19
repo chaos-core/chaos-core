@@ -11,3 +11,7 @@ module.exports.Response = require('./lib/models/response');
 module.exports.utility = require('./lib/utility');
 module.exports.errors = require('./lib/errors');
 module.exports.test = require('./lib/test');
+
+module.exports.web = {
+  middleware: require('./lib/web-api-plugin/server/middleware.js'),
+};

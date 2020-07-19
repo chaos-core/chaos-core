@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 
 import {CoreApiClient} from '../chaos-api-client.js';
 import LoadingSpinner from '../layout/components/loading-spinner.jsx';
-import {PluginContext} from '../plugins/plugins-context.jsx';
+import {PluginContext} from './plugins-context.jsx';
 import {GuildContext} from '../guilds';
 
 import './config-action.scss';

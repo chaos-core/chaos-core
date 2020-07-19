@@ -12,7 +12,5 @@
 /.nyc_output/
 .idea/
 
-lib/core-plugin/build
-lib/core-plugin/web-client/chaos-client.js
-lib/core-plugin/web-server/public/client.bundle.js
-
+lib/web-api-plugin/build
+lib/web-api-plugin/client/chaos-client.js
