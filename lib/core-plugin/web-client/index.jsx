@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {ThemeProvider} from '@material-ui/core/styles';
 
-import { CoreApiClient } from './chaos-api-client.js';
+import {ChaosApiClient} from './chaos-api-client.js';
 import appTheme from './app-theme.js';
 import AppRouter from './app-router.jsx';
 import {UserProvider} from './user';
@@ -13,7 +13,7 @@ import './index.scss';
 
 const App = () => {
   useEffect(() => {
-    CoreApiClient.getBotName().then((name) => document.title = name);
+    ChaosApiClient.getStatus().then((status) => document.title = status.botName);
   }, []);
 
   return (
