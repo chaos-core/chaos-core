@@ -63,10 +63,12 @@ const PluginCard = ({plugin}) => {
     }));
   };
 
+  const disabled = (plugin.name === 'core' || plugin.name === 'web-api');
+
   return (
     <Paper className={classes} onClick={() => pluginContext.setCurrent(plugin)}>
       <div className={'name'}>{plugin.name}</div>
-      <Switch checked={enabled} onClick={onSwitchClick} disabled={plugin.name === 'core'}/>
+      <Switch checked={enabled} onClick={onSwitchClick} disabled={disabled}/>
     </Paper>
   );
 };
