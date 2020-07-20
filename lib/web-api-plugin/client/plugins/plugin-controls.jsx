@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
+import {PluginContext} from 'chaos-core';
+import DefaultApp from 'chaos-core/default-plugin-client/App.jsx';
 
-import {LoadingSpinner, PluginContext} from 'chaos-core';
-import ConfigAction from './config-action.jsx';
-import {CoreApiClient} from '../chaos-api-client.js';
 import {pluginApps} from '../chaos-client.js';
 
 export const getPluginApp = (pluginName) => {
@@ -24,7 +23,7 @@ const PluginControls = () => {
   } else {
     return (
       <div className={'pluginControls'}>
-        <ActionList pluginName={plugin.name}/>
+        <DefaultApp plugin={plugin}/>
       </div>
     );
   }
@@ -32,25 +31,4 @@ const PluginControls = () => {
 
 export default PluginControls;
 
-const ActionList = ({pluginName}) => {
-  const [actions, setActions] = useState([]);
-  const [fetching, setFetching] = useState(false);
 
-  useEffect(() => {
-    setFetching(true);
-    CoreApiClient.getPluginActions({pluginName})
-      .then(setActions)
-      .then(() => setFetching(false))
-    ;
-  }, [pluginName]);
-
-  if (fetching) {
-    return (<LoadingSpinner/>);
-  } else {
-    return (
-      <div>
-        {actions.map((action) => <ConfigAction key={action.name} action={action}/>)}
-      </div>
-    );
-  }
-};

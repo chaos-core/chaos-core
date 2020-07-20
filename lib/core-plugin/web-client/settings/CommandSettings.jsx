@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Card from '@material-ui/core/Card';
 import {GuildContext} from 'chaos-core/guilds';
-import {CoreApiClient} from 'chaos-core/chaos-api-client.js';
+import CoreApiClient from '../core-api-client.js';
 import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
 
 import './CommandSettings.scss';
