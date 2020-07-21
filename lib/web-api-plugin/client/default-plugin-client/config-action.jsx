@@ -1,12 +1,12 @@
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 import React, {useContext, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Card from '@material-ui/core/Card';
-
 import {GuildContext, LoadingSpinner, PluginContext} from 'chaos-core';
+
 import DefaultApiClient from './default-api-client.js';
 
 import './config-action.scss';
@@ -34,12 +34,12 @@ const ConfigAction = ({action}) => {
 
   return (
     <div className={'chaos-config-action'}>
-      <ExpansionPanel expanded={expanded} onChange={() => setExpanded(!expanded)}>
-        <ExpansionPanelSummary>
+      <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+        <AccordionSummary>
           <div className={'name'}>{action.name}</div>
           <div className={'description'}>{action.description}</div>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </AccordionSummary>
+        <AccordionDetails>
           <div>
             <div className={'args'}>
               {action.args.map((arg) => (
@@ -62,8 +62,8 @@ const ConfigAction = ({action}) => {
               {response && (<ActionResponse response={response}/>)}
             </div>
           </div>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 };
