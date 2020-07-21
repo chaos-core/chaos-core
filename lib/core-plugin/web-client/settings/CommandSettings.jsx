@@ -1,11 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react';
-import Card from '@material-ui/core/Card';
-import {GuildContext} from 'chaos-core/guilds';
-import CoreApiClient from '../core-api-client.js';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
+import React, {useContext, useEffect, useState} from 'react';
+import Switch from '@material-ui/core/Switch';
+import {GuildContext} from 'chaos-core/guilds';
+
+import CoreApiClient from '../core-api-client.js';
 
 import './CommandSettings.scss';
-import Switch from '@material-ui/core/Switch';
 
 const CommandSettings = () => {
   const {guild} = useContext(GuildContext);
@@ -19,8 +22,6 @@ const CommandSettings = () => {
       .then(setCommands)
       .then(() => setFetching(false));
   }, [guild]);
-
-  if (fetching) return <LoadingSpinner/>;
 
   const plugins = commands.reduce((plugins, command) => {
     if (command.pluginName === 'core') return plugins;
@@ -41,14 +42,20 @@ const CommandSettings = () => {
   }, {});
 
   return (
-    <Card className={'settings-card command-settings'}>
-      <div>
-        Enabled Commands
-      </div>
-      {Object.values(plugins).map((plugin) => (
-        <Plugin key={plugin.name} plugin={plugin}/>
-      ))}
-    </Card>
+    <div className={'settings-card command-settings'}>
+      <Accordion>
+        <AccordionSummary>
+          Enabled Commands
+        </AccordionSummary>
+        <AccordionDetails>
+          {fetching ? <LoadingSpinner/> : (
+            Object.values(plugins).map((plugin) => (
+              <Plugin key={plugin.name} plugin={plugin}/>
+            ))
+          )}
+        </AccordionDetails>
+      </Accordion>
+    </div>
   );
 };
 
