@@ -1,7 +1,8 @@
 import React from 'react';
 
-import PrefixSettings from './settings/PrefixSettings.jsx';
 import CommandSettings from './settings/CommandSettings.jsx';
+import PermissionSettings from './settings/PermissionSettings.jsx';
+import PrefixSettings from './settings/PrefixSettings.jsx';
 
 import './App.scss';
 
@@ -10,6 +11,7 @@ const App = () => {
     <div className={'plugin core-plugin'}>
       <PrefixSettings/>
       <CommandSettings/>
+      <PermissionSettings/>
     </div>
   );
 };
