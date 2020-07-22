@@ -36,8 +36,10 @@ const ConfigAction = ({action}) => {
     <div className={'chaos-config-action'}>
       <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
         <AccordionSummary>
-          <div className={'name'}>{action.name}</div>
-          <div className={'description'}>{action.description}</div>
+          <div>
+            <div className={'name'}>{action.name}</div>
+            <div className={'description'}>{action.description}</div>
+          </div>
         </AccordionSummary>
         <AccordionDetails>
           <div>
