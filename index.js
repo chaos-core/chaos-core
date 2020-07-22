@@ -13,5 +13,6 @@ module.exports.errors = require('./lib/errors');
 module.exports.test = require('./lib/test');
 
 module.exports.web = {
+  DiscordJsonEncoder: require('./lib/web-api-plugin/discord-json-encoder.js'),
   middleware: require('./lib/web-api-plugin/server/middleware.js'),
 };
