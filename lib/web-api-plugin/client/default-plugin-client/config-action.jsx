@@ -5,14 +5,14 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import React, {useContext, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
-import {GuildContext, LoadingSpinner, PluginContext} from 'chaos-core';
+import {LoadingSpinner, PluginContext, useGuild} from 'chaos-core';
 
 import DefaultApiClient from './default-api-client.js';
 
 import './config-action.scss';
 
 const ConfigAction = ({action}) => {
-  const {guild} = useContext(GuildContext);
+  const guild = useGuild();
   const {plugin} = useContext(PluginContext);
 
   const [expanded, setExpanded] = useState(false);

@@ -4,15 +4,15 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
-import {GuildContext} from 'chaos-core';
+import {useGuild} from 'chaos-core';
 
 import CoreApiClient from '../core-api-client.js';
 import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
 
 const PrefixSettings = () => {
-  const {guild} = useContext(GuildContext);
+  const guild = useGuild();
 
   const [prefix, setPrefix] = useState('');
   const [error, setError] = useState(null);

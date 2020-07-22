@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
 
-import {ChaosApiClient, GuildContext, LoadingSpinner, PluginContext} from 'chaos-core';
+import {ChaosApiClient, LoadingSpinner, PluginContext, useGuild} from 'chaos-core';
 
 import './plugins-list.scss';
 
 const PluginsList = () => {
-  const {guild} = useContext(GuildContext);
+  const guild = useGuild();
   const [plugins, setPlugins] = useState([]);
   const [fetching, setFetching] = useState(false);
 
@@ -40,9 +40,9 @@ const PluginsList = () => {
 export default PluginsList;
 
 const PluginCard = ({plugin}) => {
-  const [enabled, setEnabled] = useState(plugin.enabled);
-  const {guild} = useContext(GuildContext);
+  const guild = useGuild();
   const pluginContext = useContext(PluginContext);
+  const [enabled, setEnabled] = useState(plugin.enabled);
 
   const classes = classNames({
     pluginCard: true,

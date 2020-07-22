@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 
 import {UserAvatar, UserContext} from '../user';
-import {GuildContext, GuildIcon} from '../guilds';
+import {GuildIcon, useGuild} from '../guilds';
 
 import './app-header.scss';
 
@@ -18,18 +18,19 @@ const AppHeader = () => {
 export default AppHeader;
 
 const GuildArea = () => {
-  const { guild } = useContext(GuildContext);
+  const guild = useGuild();
+
   if (!guild) {
     return (
-      <div className={"guildArea"}>
-        <div className={"guildIcon"}/>
+      <div className={'guildArea'}>
+        <div className={'guildIcon'}/>
         <div className={'guildName'}>&nbsp;</div>
         <SelectGuildBtn/>
       </div>
     );
   } else {
     return (
-      <div className={"guildArea"}>
+      <div className={'guildArea'}>
         <GuildIcon guild={guild}/>
         <div className={'guildName'}>{guild.name}</div>
         <SelectGuildBtn/>
@@ -42,18 +43,18 @@ const SelectGuildBtn = () => {
   const history = useHistory();
 
   return (
-    <span className={"selectGuildBtn"} onClick={() => history.push("/guilds")}>
+    <span className={'selectGuildBtn'} onClick={() => history.push('/guilds')}>
       Select Guild
     </span>
   );
 };
 
 const UserArea = () => {
-  const { currentUser } = useContext(UserContext);
+  const {currentUser} = useContext(UserContext);
   if (!currentUser) return null;
 
   return (
-    <div className={"userArea"}>
+    <div className={'userArea'}>
       <UserAvatar user={currentUser}/>
       <div className={'userTag'}>{currentUser.tag}</div>
       <LogoutBtn/>
@@ -62,9 +63,9 @@ const UserArea = () => {
 };
 
 const LogoutBtn = () => {
-  const { logout } = useContext(UserContext);
+  const {logout} = useContext(UserContext);
 
   return (
-    <span className={"logoutBtn"} onClick={logout}>Logout</span>
+    <span className={'logoutBtn'} onClick={logout}>Logout</span>
   );
 };

@@ -2,16 +2,16 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import LoadingSpinner from 'chaos-core/layout/components/loading-spinner.jsx';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Switch from '@material-ui/core/Switch';
-import {GuildContext} from 'chaos-core/guilds';
+import {useGuild} from 'chaos-core';
 
 import CoreApiClient from '../core-api-client.js';
 
 import './CommandSettings.scss';
 
 const CommandSettings = () => {
-  const {guild} = useContext(GuildContext);
+  const guild = useGuild();
 
   const [commands, setCommands] = useState([]);
   const [fetching, setFetching] = useState(false);
@@ -75,7 +75,7 @@ const Plugin = ({plugin}) => {
 };
 
 const PluginCommand = ({plugin, command}) => {
-  const {guild} = useContext(GuildContext);
+  const guild = useGuild();
   const [enabled, setEnabled] = useState(command.enabled);
 
   const onChange = async () => {
