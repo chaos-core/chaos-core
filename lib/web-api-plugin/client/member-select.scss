@@ -1,0 +1,14 @@
+.chaos-member {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .userAvatar {
+    margin-right: 8px;
+    float: left;
+  }
+
+  .memberName {
+    flex-grow: 1;
+  }
+}

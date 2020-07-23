@@ -6,6 +6,7 @@ import React, {useEffect, useState} from 'react';
 import {useGuild} from 'chaos-core/guilds';
 
 import CoreApiClient from '../core-api-client.js';
+import {MemberSelect} from 'chaos-core/member-select.jsx';
 
 const PermissionSettings = () => {
   const guild = useGuild();
@@ -27,7 +28,11 @@ const PermissionSettings = () => {
           Permissions
         </AccordionSummary>
         <AccordionDetails>
-          {fetching ? <LoadingSpinner/> : (<div>{JSON.stringify(permissions)}</div>)}
+          {fetching ? <LoadingSpinner/> : (
+            <div>
+              {JSON.stringify(permissions)}
+              <MemberSelect/>
+            </div>)}
         </AccordionDetails>
       </Accordion>
     </div>
