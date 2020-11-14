@@ -2,13 +2,9 @@
   "name": "chaos-core",
   "version": "5.1.0",
   "description": "A framework for discord bots",
-  "homepage": "",
-  "type": "commonjs",
-  "author": {
-    "name": "Stephen A. Wilson",
-    "email": "Stephen-356@hotmail.com",
-    "url": "stephenawilson.me"
-  },
+   "type": "commonjs",
+  "homepage": "https://github.com/chaos-core/chaos-core#readme",
+  "author": "Stephen A. Wilson <Stephen-356@hotmail.com> (stephenawilson.me)",
   "files": [
     "lib"
   ],
@@ -27,9 +23,13 @@
     "discord.js",
     "framework"
   ],
-  "repository": "https://github.com/chaos-core/chaos-core",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaos-core/chaos-core.git"
+  },
   "license": "MIT",
   "directories": {
+    "doc": "docs",
     "lib": "lib",
     "test": "test"
   },
@@ -88,5 +88,8 @@
     "npm-run-all": "^4.1.5",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/chaos-core/chaos-core/issues"
   }
 }
